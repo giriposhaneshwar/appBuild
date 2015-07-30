@@ -1,0 +1,129 @@
+body, html{
+	margin: 0px;
+	padding: 0px;
+	background-color: #F5F5F5;
+}
+
+.row{
+	padding: 0px;
+	margin: 0px;
+}
+.mainContainer, .warper{
+	display: block;
+}
+.headerContainer{
+	background-color: #c00;   uncheck comment for default 
+}
+.err{
+	color: #c00;
+}
+.success{
+	color:#000;
+}
+.logoSection{
+	font-weight: bold;
+	color: #fff;
+	background-color: #fff;
+	text-align: center;
+	text-shadow: 1px 1px 3px #888;
+	padding: 8px 15px;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	border-radius: 3px;
+}
+.logoSection, .navSection {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+ul.navItems{
+	margin: 0px;
+	padding :0px;
+	list-style: none;
+}
+ul.navItems li{
+	display: inline-block;
+	border-right: 1px solid #990000; uncheck comment for default
+}
+ul.navItems li:last-child{
+	border-right: none;
+}
+ul.navItems li a{
+	display: block;
+	padding: 8px 15px;
+	text-decoration: none;
+	color: #F2C7C7; /*uncheck comment for default*/
+	font-size: 1em;
+}
+ul.navItems li:hover a{
+	color: #FAE6E6;
+}
+ul.navItems li a.active{
+	color: #000;
+}
+
+.userLoginInfo{
+	display: block;
+	padding: 8px 15px;
+	font-size: 0.86em;
+	text-align: right;
+}
+
+/*---------- LOGIN FORM STYLES---*/
+.loginForm{
+	display: block;
+	margin: 120px auto;
+	width: 30%;
+}
+.loginForm .panel{
+	padding: 0px 20px;
+}
+.btn-danger{
+	background-color: #c00; /*uncheck comment for default*/
+	background-color: #123;
+}
+.btn-danger.active, 
+.btn-danger.focus, 
+.btn-danger:active, 
+.btn-danger:focus, 
+.btn-danger:hover, 
+.open>.dropdown-toggle.btn-danger{
+	background-color: #6E0202;
+}
+/*---------- LOGIN FORM STYLES END---*/
+
+
+/*---------- Body  STYLES END---*/
+.bodyContainer{
+	display: block;
+	padding: 20px 0px;
+	background-color: #fff;
+}
+.addProduct{
+	padding: 10px 0px;
+}
+.formHolder{
+	width: 90%;
+}
+.formButHolder{
+	display: block;
+	padding: 8px 0px;
+	background-color: #f2f2f2;
+	margin: -15px;
+	margin-top: 20px;
+	border-radius: 0px 0px 3px 3px;
+}
+
+/* -- FOOTER STYLES --------*/
+.footerContainer{
+	display: block;
+	border-top: 1px solid #ccc;
+	background-color: #F5F5F5;
+	padding: 15px 0px;
+	text-align: center;
+}
+.footerContainer a{
+	text-decoration: none;
+	color: #303030;
+	font-weight: bold;
+}

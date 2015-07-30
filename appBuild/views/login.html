@@ -1,0 +1,26 @@
+<div class="loginForm text-center">
+	<div class="panel panel-default">
+		<div class="panel-title">
+			<h2>Login</h2>						
+		</div>
+		<div class="panel-body">
+			<form method="post" class="form">
+				<div class="form-group">
+					<input type="text" ng-model="logData.username" name="username" placeholder="User Name" id="username" class="username form-control">
+				</div>
+
+				<div class="form-group">
+					<input type="password" ng-model="logData.password" name="password" placeholder="Password" id="password" class="password form-control">
+				</div>
+
+				<div class="form-group text-center">
+	  				<button type="submit" class="btn btn-danger" ng-click="login($event, logData)">Login</button>
+				</div>
+			</form>
+			<div class="resText">
+				<span class="err" ng-show="!er">{{resText}} {{er}}</span>
+				<span class="success" ng-show="er">{{resText}} {{er}}</span>
+			</div>
+		</div>
+	</div>
+</div>
