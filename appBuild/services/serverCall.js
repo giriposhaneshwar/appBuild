@@ -1,37 +1,41 @@
-(function(){
-	var app = angular.module("appBuild");
+(function () {
+  var app = angular.module('appBuild')
 
-	app.factory("serviceCall", function($http){
+  app.factory('serviceCall', function ($http) {
+    var urlPre = 'http://localhost/dc/server/'
 
-		var urlPre = "http://localhost/dc/server/";
+    return {
+      getService: function (url, data, cb) {
+        if(!data) { data = {}; }
 
+        var rtn = {}
+        var rtn1 = {}
+        var loggedInUser = window.localStorage['inUser']
 
-		return {
-		        getService: function(url,data,cb){
-                    if(!data){ data = {}; }
-                    
-                    var rtn = {};
-                    var rtn1 = {};
-	
-		            rtn = $http({
-						    url: urlPre+""+url,
-						    method: "POST",
-						    data: JSON.stringify(data)
-						    }).success(function (data, status, headers, config) {
+        // console.log('getting the data type of ', typeof data)
 
-						    	if(cb){
-						    		return cb(data);
-						    	}else{
-						    		return data;
-						    	}
-						        console.log("service response", data, status, headers, config);
-						        // return data;
-						    }).error(function (data, status, headers, config) {});
+        if(typeof data == 'object') {
+          data.loggedInUser = loggedInUser
+        }
 
-		            // return rtn;
-		        }    	
+        rtn = $http({
+          url: urlPre + '' + url,
+          method: 'POST',
+          data: JSON.stringify(data)
+        }).success(function (data, status, headers, config) {
+          if(cb) {
+            return cb(data)
+          } else {
+            return data
+          }
+          console.log('service response', data, status, headers, config)
+        // return data
+        }).error(function (data, status, headers, config) {})
 
-		}// return end
+      // return rtn
+      }
 
-	});
-}());
+    }// return end
+
+  })
+}())

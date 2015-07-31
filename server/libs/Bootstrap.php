@@ -38,6 +38,7 @@ class Bootstrap
         $url = filter_var($url, FILTER_SANITIZE_URL);
         $url = explode('/', $url);
 		
+		// echo "URL : ". $d['method'];
         $this->_url = $url;
 
         $this->_data = $d['data'];

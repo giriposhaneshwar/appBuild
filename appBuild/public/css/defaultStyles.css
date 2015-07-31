@@ -4,6 +4,7 @@ body, html{
 	background-color: #F5F5F5;
 }
 
+
 .row{
 	padding: 0px;
 	margin: 0px;
@@ -79,8 +80,7 @@ ul.navItems li a.active{
 	padding: 0px 20px;
 }
 .btn-danger{
-	background-color: #c00; /*uncheck comment for default*/
-	background-color: #123;
+	background-color: #c00;
 }
 .btn-danger.active, 
 .btn-danger.focus, 
@@ -114,6 +114,64 @@ ul.navItems li a.active{
 	border-radius: 0px 0px 3px 3px;
 }
 
+/*  Customer Page Styles ------------------*/
+.cmHolder{
+	display: block;
+}
+.cmHolder .tabContainer{
+	display: block;
+}
+.cmHolder .tabContainer ul.tabItems{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-align: right;
+}
+.cmHolder .tabContainer ul.tabItems > li{
+	display: inline-block;
+	padding: 8px 12px;
+	margin: 2px;
+	background-color: #D2D2D2;
+	color: #000;
+	border-radius: 8px;
+}
+.cmHolder .tabContainer ul.tabItems > li.active{
+	box-shadow: 1px 1px 3px #888;
+	background-color: #000;
+	color: #fff;
+}
+.cmHolder .tabContainer ul.tabItems > li:hover{
+	cursor: pointer;
+	box-shadow: 0px 0px 2px #000;
+}
+.arrengment{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.arrengment li{
+	display: inline-block;
+	vertical-align: middle;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+.arrengment li:nth-child(2){
+	text-align: center;
+	border: none;
+	padding: 0px 12px;
+	color: #555;
+	font-style: italic;
+}
+.arrengment li:first-child, .arrengment li:last-child{
+	min-height: 350px;
+	width: 45%;
+	padding: 20px 10px;
+}
+.textareaSize{
+	min-height: 5.1em;
+}
+/*  Customer Page Styles End ------------------*/
+
 /* -- FOOTER STYLES --------*/
 .footerContainer{
 	display: block;
@@ -126,4 +184,24 @@ ul.navItems li a.active{
 	text-decoration: none;
 	color: #303030;
 	font-weight: bold;
+}
+
+
+/* Angular js Animations -----------*/
+.ng-enter{
+	transition: 0.5s;
+	opacity: 0;
+}
+.ng-enter-stagger{}
+.ng-enter-active{
+	opacity: 1;
+}
+
+.ng-leave{
+	transition: 0.1s;
+	opacity: 1;
+}
+.ng-leave-stagger{}
+.ng-leave-active{
+	opacity: 0;
 }

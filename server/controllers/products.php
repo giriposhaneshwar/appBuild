@@ -2,7 +2,7 @@
 /**
 * Dashboard Controller
 */
-class Getdata extends Controller
+class Products extends Controller
 {
 	
 	function __construct() {
@@ -12,11 +12,6 @@ class Getdata extends Controller
     }
 
     function getStats($method, $postData){
-    	$this->loadModelMethod($method, $postData);
-    }
-
-    function getList($method, $postData){
-    	// echo "\nthis is getdata controller\n";
     	$this->loadModelMethod($method, $postData);
     }
     

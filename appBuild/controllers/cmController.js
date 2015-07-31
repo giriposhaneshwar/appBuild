@@ -10,15 +10,35 @@
 
     // $scope.msg = $http.get(url)
     $scope.curNav = $location.path().substring(1)
+    $scope.tabActive = 'customerList'
+
+    // Customer Page Tab Functions
+    $scope.addCustomerTab = function () {
+      $scope.tabActive = 'addCustomer'
+    }
+    $scope.customerListTab = function () {
+      // Acitvating the Tab
+      $scope.tabActive = 'customerList'
+
+      $scope.cList = appData.customers
+    }
+    if($scope.tabActive == 'customerList') {
+      $scope.customerListTab()
+    }
 
     // Get List of Customers
-    var url = 'customer/'
-    var method = 'getList'
-    var data = {action: method}
+    var url = ''
+    var obj = {}
 
-    var dt = serviceCall.getService(url, data, function (res) {
+    obj.method = 'customers/getList'
+    obj.data = ''
+
+    console.log('Sending object ', obj)
+
+    var dt = serviceCall.getService(url, obj, function (res) {
       $scope.msg = res
     })
+
   }
 
   // Defining the controller

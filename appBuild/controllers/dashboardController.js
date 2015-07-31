@@ -12,6 +12,8 @@
     obj.method = 'dashboard/getStats'
     obj.data = ''
 
+    console.log('Sending data', obj)
+
     var dt = serviceCall.getService(url, obj, function (data) {
       $scope.msg = data
       console.log('dashboard/getStats', data)
