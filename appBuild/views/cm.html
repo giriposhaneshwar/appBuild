@@ -9,42 +9,42 @@
 	<div class="cmContentHolder">
 		<div class="addCustomerRow" ng-if="tabActive== 'addCustomer'">
 			<h3>Add Customer</h3>
-			<form ng-submit="addCustomer()" class="form">
+			<form class="form">
 			<div class="row">
 				<div class="col-sm-6 addFrom">
 					<div class="form-group">
 						<label for="companyName">Company Name</label>
-						<input type="text" class="form-control" name="companyName" id="companyName" placeholder="ex: Company Name">
+						<input type="text" ng-model="company.companyName" class="form-control" name="companyName" id="companyName" placeholder="ex: Company Name">
 					</div>
 					<div class="form-group">
 						<label for="custName">Name</label>
-						<input type="text" class="form-control" name="customerName" id="custName" placeholder="ex: giriy">
+						<input type="text" class="form-control" ng-model="company.customerName" name="customerName" id="custName" placeholder="ex: giriy">
 					</div>
 					<div class="form-group">
 						<label for="custPhone">Phone</label>
-						<input type="text" class="form-control" name="customerPhone" id="custPhone" placeholder="ex: 7893585898">
+						<input type="text" ng-model="company.companyPhone" class="form-control" name="customerPhone" id="custPhone" placeholder="ex: 7893585898">
 					</div>
 					<div class="form-group">
 						<label for="custEmail">Email</label>
-						<input type="text" class="form-control" name="customerEmail" id="custEmail" placeholder="ex: egp.designs@gmail.com">
+						<input type="text" class="form-control" ng-model="company.companyEmail" name="customerEmail" id="custEmail" placeholder="ex: egp.designs@gmail.com">
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="address">Address</label>
-						<textarea class="form-control textareaSize" name="customerAddress" id="address"></textarea>
+						<textarea class="form-control textareaSize" name="customerAddress" ng-model="company.address" id="address" ></textarea>
 					</div>
 					<div class="form-group">
 						<label for="description">Description</label>
-						<textarea class="form-control textareaSize" name="companyDescription" id="description"></textarea>
+						<textarea class="form-control textareaSize" name="companyDescription" ng-model="company.description" id="description"></textarea>
 					</div>
 					<div class="form-group">
-						<label for="custType">Type</label>
-						<input type="text" class="form-control" name="companyType" id="custType" placeholder="ex: Manugacturer">
+						<label for="companyType">Type</label>
+						<input type="text" class="form-control" name="companyType" ng-model="company.companyType" id="companyType" placeholder="ex: Manugacturer">
 					</div>
 				</div>
 				<div class="col-sm-12 form-group text-left">
-					<input type="button" class="btn btn-danger" value="Add Customer">
+					<input type="button" class="btn btn-danger" value="Add Customer" ng-click="addCustomer($event, company)">
 				</div>
 			</div>
 			</form>

@@ -2,7 +2,7 @@
   var app = angular.module('appBuild')
 
   app.factory('serviceCall', function ($http) {
-    var urlPre = 'http://localhost/dc/server/'
+    var urlPre = 'http://localhost/dcapplication/server/'
 
     return {
       getService: function (url, data, cb) {

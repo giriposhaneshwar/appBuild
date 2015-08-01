@@ -15,6 +15,7 @@
     // Login User 
  	function loginUser($postData)
     {
+        // echo $postData['username']. " / " . $postData['password'];
         $sth = $this->db->prepare("SELECT * FROM user_accounts WHERE 
                 username = :login AND password = :password LIMIT 1");
         $sth->execute(array(

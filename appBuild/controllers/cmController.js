@@ -39,6 +39,43 @@
       $scope.msg = res
     })
 
+    $scope.addCustomer = function(d, data){
+      d.preventDefault();
+
+      $scope.company = {};
+      console.log("Adding customer here", d, data);
+      
+
+      var url = ''
+      var obj = {}
+      obj.method = 'customer/addCustomer'
+      obj.data = data
+
+      console.log('Sending Data', obj)
+
+      var dt = serviceCall.getService(url, obj, function (res) {
+        $scope.msg = res
+        console.log('DATA GET \n', res)
+
+        /*if(res.result == 'success') {
+          console.log('data', res)
+          $scope.er = true
+          $scope.resText = res.result
+          console.log(res)
+          window.localStorage['inUser'] = res.data.username
+          window.localStorage['user'] = res.data.personName
+          window.location.hash = '#/dashboard'
+        } else {
+          $scope.er = false
+          $scope.resText = 'Failed to login'
+        // window.location.hash = '#/login'
+        }*/
+
+      })
+
+
+    }
+
   }
 
   // Defining the controller

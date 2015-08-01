@@ -47,5 +47,9 @@
         
     }
 
+    public function addCustomer($custData){
+        var_dump($custData);
+    }
+
 
  } ?>
