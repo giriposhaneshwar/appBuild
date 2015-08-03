@@ -7,9 +7,9 @@ app.config(function ($routeProvider, $locationProvider) {// , $locationProvider
   // use the HTML5 History API
   $locationProvider.html5Mode(false)
   /*$locationProvider.html5Mode({
-	  enabled: false,
-	  requireBase: true
-	});*/
+    enabled: false,
+    requireBase: true
+  });*/
 
   $routeProvider
     .when('/home', {

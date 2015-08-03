@@ -39,6 +39,11 @@
       $scope.msg = res
     })
 
+    // Adding customer to database
+    $scope.addCustomer = function (d, data) {
+      d.preventDefault()
+      console.log('Adding Customer is ', d, data)
+    }
   }
 
   // Defining the controller
