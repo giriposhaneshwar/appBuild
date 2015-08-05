@@ -9,4 +9,28 @@ Object Base Structure:
 list of service calls
 Login:---
 	Login Service: login/loginUser
-	Data: {username: name, password: pass}
+	Data: 	{
+			    "method": "login/loginUser",
+			    "data": {
+			        "res": {
+			            "username": "giriy",
+			            "password": "admin"
+			        },
+			        "loggedInUser": {}
+			    }
+			}
+
+
+Dashboard:--------
+Getting Stats:
+	Login Service : "dashboard/getStats"
+	Data: {
+		    "method": "dashboard/getStats",
+		    "data": {
+		        "res": {},
+		        "loggedInUser": {
+		            "user": "giriy",
+		            "name": "Giri Poshaneshwar"
+		        }
+		    }
+		}
