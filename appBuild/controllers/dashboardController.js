@@ -7,14 +7,12 @@
     $scope.msg = 'Dashboard Page'
 
     // Request the server
-    var url = ''
-    var obj = {}
-    obj.method = 'dashboard/getStats'
-    obj.data = ''
+    $scope.dataObject.method = 'dashboard/getStats'
+    $scope.dataObject.data.res = ''
 
-    console.log('Sending data', obj)
+    console.log('Sending data', $scope.dataObject)
 
-    var dt = serviceCall.getService(url, obj, function (data) {
+    var dt = serviceCall.getService($scope.dataObject, function (data) {
       $scope.msg = data
       console.log('dashboard/getStats', data)
     })

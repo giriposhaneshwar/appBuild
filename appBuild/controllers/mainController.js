@@ -6,15 +6,22 @@
     // $scope.msg = "Page loaded successfully"
     // $scope.msg = $http.get(url)
 
+    // Data Object to Send to server
+    $scope.dataObject = {
+      method : '', data: {}
+    }
+
     // get preset page
     // console.log("$scope.webNav", $scope.webNav)
     // console.log("$scope.appNav", $scope.appNav)
 
     // Check login
-    if(window.localStorage['login'] != 'undefined') {
-      $scope.getOn = window.localStorage['user']
+    if(window.localStorage['inUser'] != 'undefined') {
+      $scope.getOn = window.localStorage['inUser']
+      $scope.dataObject.data.userLogin = $scope.getOn
     } else {
       $scope.getOn = ''
+      $scope.dataObject.data.userLogin = {}
     }
 
     if($scope.getOn == null) {
@@ -76,19 +83,21 @@
     // Loading the list of products and customers
     $scope.getList = function () {
       var url = ''
-      var obj = {}
-      obj.method = 'getdata/getList'
-      obj.data = null
+      $scope.dataObject.method = 'getdata/getList'
+      $scope.dataObject.data.res = {}
 
-      console.log('Sending Data', obj)
+      console.log('Sending Data', $scope.dataObject)
 
-      var dt = serviceCall.getService(url, obj, function (res) {
+      var dt = serviceCall.getService(url, $scope.dataObject, function (res) {
         console.log('getdata/getList\n', res)
         appData.products = res.productList
         appData.customers = res.customerList
       })
     }
-    $scope.getList()
+
+    if($scope.getOn != undefined) {
+      $scope.getList()
+    }
 
   // setting up the navigation menu
   // $scope.page()

@@ -15,7 +15,7 @@
         // console.log('getting the data type of ', typeof data)
 
         if(typeof data == 'object') {
-          data.loggedInUser = loggedInUser
+          data.data.loggedInUser = loggedInUser
         }
 
         rtn = $http({

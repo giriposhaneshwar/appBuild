@@ -27,15 +27,13 @@
     }
 
     // Get List of Customers
-    var url = ''
-    var obj = {}
 
-    obj.method = 'customers/getList'
-    obj.data = ''
+    $scope.dataObject.method = 'customers/getList'
+    $scope.dataObject.data.res = ''
 
-    console.log('Sending object ', obj)
+    console.log('Sending object ', $scope.dataObject)
 
-    var dt = serviceCall.getService(url, obj, function (res) {
+    var dt = serviceCall.getService($scope.dataObject, function (res) {
       $scope.msg = res
     })
 
