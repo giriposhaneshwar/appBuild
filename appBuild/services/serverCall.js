@@ -10,7 +10,7 @@
 
         var rtn = {}
         var rtn1 = {}
-        var loggedInUser = window.localStorage['inUser']
+        var loggedInUser = {user: window.localStorage['inUser'], name: window.localStorage['user']}
 
         // console.log('getting the data type of ', typeof data)
 

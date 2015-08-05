@@ -18,10 +18,8 @@
     // Check login
     if(window.localStorage['inUser'] != 'undefined') {
       $scope.getOn = window.localStorage['inUser']
-      $scope.dataObject.data.userLogin = $scope.getOn
     } else {
       $scope.getOn = ''
-      $scope.dataObject.data.userLogin = {}
     }
 
     if($scope.getOn == null) {

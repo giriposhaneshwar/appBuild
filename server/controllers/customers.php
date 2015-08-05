@@ -18,6 +18,10 @@ class Customers extends Controller
     function getList($method, $postData){
     	$this->loadModelMethod($method, $postData);
     }
+
+    function insertCustomer($method, $postData){
+        $this->loadModelMethod($method, $postData);
+    }
     
 }
  ?>

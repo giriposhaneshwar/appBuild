@@ -18,9 +18,9 @@
         $sth = $this->db->prepare("SELECT * FROM user_accounts WHERE 
                 username = :login AND password = :password LIMIT 1");
         $sth->execute(array(
-            ':login' => $postData['username'],
+            ':login' => $postData['res']['username'],
             // ':password' => Hash::create('sha256', $_POST['password'], HASH_PASSWORD_KEY)
-            ':password' => $postData['password']
+            ':password' => $postData['res']['password']
         ));
         
         $data = $sth->fetchAll();

@@ -15,18 +15,48 @@
     // Login User 
  	function getStats($postData)
     {
-        echo "Getting the stats of dashboard";
-        /*$sth = $this->db->prepare("SELECT * FROM user_accounts WHERE 
-                username = :login AND password = :password LIMIT 1");
-        $sth->execute(array(
-            ':login' => $postData['username'],
-            // ':password' => Hash::create('sha256', $_POST['password'], HASH_PASSWORD_KEY)
-            ':password' => $postData['password']
-        ));
-        
-        $data = $sth->fetch();
+        echo "Getting the stats of dashboard";        
+    }
 
-        $count =  $sth->rowCount();
+    function getList($postData)
+    {
+        echo "Getting the list of customers";   
+    }
+
+    function insertCustomer($postData){
+        /* input model
+        ----------------------
+            {
+              "company"       : "Techvedika"
+              "customer"      : "Giriy"
+              "phone"         : "123"
+              "email"         : "tech@tech.com"
+              "address"       : "madhapur"
+              "description"   : "development company"
+              "companyType"   : "software company"
+            }
+        */
+
+        // Inserting the data into database
+        $sth = $this->db->prepare("INSERT INTO 
+                                    customermaster(`cName`, `cCompany`, `cAddress`, `cType`, `cDesc`, `user_account`) 
+                                    VALUES(:customer, :company, :address, :type, :desc, :user)");
+        $res = $sth->execute(array(
+            ':customer' => $postData['customer'],
+            ':company' => $postData['company'],
+            ':address' => $postData['address'],
+            ':type' => $postData['companyType'],
+            ':desc' => $postData['description'],
+            ':user' => $postData['loggedUser'],
+        ));
+
+        if($res){
+            echo "Records inserted successfully";
+        }else{
+            echo $res;
+        }
+
+        /*$count =  $sth->rowCount();
         if ($count > 0) {
             // Login Success send the data to redirect the page
             $buildObj['result'] = "success";
@@ -38,13 +68,6 @@
             // header('location: ../login');
             echo "No users to show : ".$count;
         }*/
-        
-    }
-
-    function getList($postData)
-    {
-        echo "Getting the list of customers";
-        
     }
 
 
