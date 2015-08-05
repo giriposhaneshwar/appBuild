@@ -13,7 +13,8 @@ body, html{
 	display: block;
 }
 .headerContainer{
-	background-color: #c00;   uncheck comment for default 
+	/*background-color: #c00; */
+	background-color: #808080;   /*uncheck comment for default */
 }
 .err{
 	color: #c00;
@@ -23,7 +24,7 @@ body, html{
 }
 .logoSection{
 	font-weight: bold;
-	color: #000;
+	color: #ccc;
 	background-color: #fff;
 	text-align: center;
 	text-shadow: 1px 1px 3px #888;
@@ -169,6 +170,38 @@ ul.navItems li a.active{
 }
 .textareaSize{
 	min-height: 5.1em;
+}
+
+.addCustomerRow{
+	display: block;
+}
+.addCustomerRow ul{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.addCustomerRow ul li{
+	display: block;
+	margin: 3px 0px;
+	background-color: #f2f2f2;
+	border: 1px solid #ccc;
+	padding: 8px 12px;
+	border-radius: 5px;
+}
+.addCustomerRow ul li .itemHolder > b{
+	display: inline-block;
+}
+.addCustomerRow ul li .itemHolder > b:after{
+	content: " :"
+}
+.addCustomerRow ul li .itemHolder .details{
+	display: inline-block;
+	font-size: 0.86em;
+	color: #555;
+}
+.addCustomerRow ul li .itemHolder .details b{
+	font-weight: normal;
+	color: #000;
 }
 /*  Customer Page Styles End ------------------*/
 
