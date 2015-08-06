@@ -5,7 +5,7 @@
     var urlPre = 'http://localhost/dc/server/'
 
     return {
-      getService: function (url, data, cb) {
+      getService: function (data, cb) {
         if(!data) { data = {}; }
 
         var rtn = {}
@@ -19,7 +19,7 @@
         }
 
         rtn = $http({
-          url: urlPre + '' + url,
+          url: urlPre,
           method: 'POST',
           data: JSON.stringify(data)
         }).success(function (data, status, headers, config) {

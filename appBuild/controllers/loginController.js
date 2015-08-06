@@ -36,14 +36,12 @@
       d.preventDefault()
       // console.log(d, data)
 
-      var url = ''
-      var obj = {}
-      obj.method = 'login/loginUser'
-      obj.data = data
+      $scope.dataObject.method = 'login/loginUser'
+      $scope.dataObject.data.res = data
 
-      console.log('Sending Data', obj)
+      console.log('Sending Data', $scope.dataObject)
 
-      var dt = serviceCall.getService(url, obj, function (res) {
+      var dt = serviceCall.getService($scope.dataObject, function (res) {
         $scope.msg = res
         console.log('DATA GET \n', res)
 
