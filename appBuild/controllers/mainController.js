@@ -80,13 +80,12 @@
 
     // Loading the list of products and customers
     $scope.getList = function () {
-      var url = ''
       $scope.dataObject.method = 'getdata/getList'
       $scope.dataObject.data.res = {}
 
       console.log('Sending Data', $scope.dataObject)
 
-      var dt = serviceCall.getService(url, $scope.dataObject, function (res) {
+      var dt = serviceCall.getService($scope.dataObject, function (res) {
         console.log('getdata/getList\n', res)
         appData.products = res.productList
         appData.customers = res.customerList

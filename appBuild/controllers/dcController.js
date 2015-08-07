@@ -7,9 +7,11 @@
     window.localStorage['customerRows'] = ''
     window.localStorage['productRows'] = ''
     // Global Defaults
-    $scope.productLocal != {} ? window.localStorage['customerRows'] : {}
-    $scope.customerLocal != {} ? window.localStorage['productRows'] : {}
+    $scope.productLocal = window.localStorage['productRows'] != '' ? window.localStorage['productRows'] : {}
+    $scope.customerLocal != {} ? window.localStorage['customerRows'] : {}
     $scope.customerFormVal = {}
+
+    console.log('$scope.productLocal', $scope.productLocal)
 
     // $scope.msg = "Page loaded successfully"
     var url = 'http://localhost/appBuildServer'
@@ -72,11 +74,24 @@
     $scope.addProductRow = function (evt, pData) {
       evt.preventDefault()
 
-      console.log(evt, pData)
+      console.log('row before', pData)
+
+      var vatAmt = 0
+      if(pData.setVatRow == undefined) {
+        pData.setVatRow = 0
+      } else {
+        vatAmt = Number(pData.setVatRow) * (Number(pData.rate) * Number(pData.qty)) / 100
+      }
+
+      console.log('Vat', typeof pData.setVatRow, '\nRate', typeof pData.rate, '\nQty', typeof pData.qty)
 
       $scope.getSizeObject = Object.keys(pData).length
 
-      if($scope.getSizeObject == 3) {
+      if($scope.getSizeObject == 4) {
+        pData.amt = vatAmt + (Number(pData.rate) * Number(pData.qty))
+
+        // console.log('$scope.productList', $scope.productList)
+        console.log('row After', pData)
         $scope.productList.push(pData)
         window.localStorage['productRows'] = JSON.stringify($scope.productList)
         $scope.product = {}
