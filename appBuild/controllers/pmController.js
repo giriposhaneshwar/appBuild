@@ -12,15 +12,13 @@
     console.log('page', $scope.curNav)
 
     // Get List of Customers
-    var url = ''
-    var obj = {}
 
-    obj.method = 'products/getStats'
-    obj.data = ''
+    $scope.dataObject.method = 'products/getStats'
+    $scope.dataObject.data.res = {}
 
-    console.log('Sending object ', obj)
+    console.log('Sending object ', $scope.dataObject)
 
-    var dt = serviceCall.getService(url, obj, function (res) {
+    var dt = serviceCall.getService($scope.dataObject, function (res) {
       $scope.msg = res
     })
 

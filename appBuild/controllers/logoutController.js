@@ -15,8 +15,8 @@
       window.location.hash = '#/login'
     } else {
       window.location.hash = '#/login'
-      window.localStorage.removeItem('inUser')
-      window.localStorage.removeItem('user')
+      window.localStorage.clear()
+    // window.localStorage.removeItem('user')
     }
 
     // main controller page function

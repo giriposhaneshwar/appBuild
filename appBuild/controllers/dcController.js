@@ -93,6 +93,10 @@
         // console.log('$scope.productList', $scope.productList)
         console.log('row After', pData)
         $scope.productList.push(pData)
+
+        // Calculatin the total
+        $scope.getTotal($scope.productList)
+
         window.localStorage['productRows'] = JSON.stringify($scope.productList)
         $scope.product = {}
       } else {
@@ -100,6 +104,15 @@
           console.log(a, a.length, b, b.length)
         })
       }
+    }
+
+    $scope.getTotal = function (obj) {
+      var gmt = 0
+      angular.forEach(obj, function (i, v) {
+        gmt = gmt + i.amt
+        console.log('Grand Total ', i.amt, gmt)
+        $scope.total = gmt
+      })
     }
 
     $scope.editRow = function (evt, key, val) {
