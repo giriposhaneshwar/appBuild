@@ -57,20 +57,6 @@
     // restricting to the numbres only
     // $scope.onlyNumbers = /^\d+$/
 
-    $scope.formSubmit = function (d, sData) {
-      d.preventDefault()
-
-      console.log(sData)
-
-    /*var obj = ''
-    var url = 'dcServer/dc/'
-
-    var dt = serviceCall.getService(url, sData, function (data) {
-      $scope.msg = data
-      console.log('data', data)
-    })*/
-    }
-
     $scope.addProductRow = function (evt, pData) {
       evt.preventDefault()
 
@@ -83,7 +69,7 @@
         vatAmt = Number(pData.setVatRow) * (Number(pData.rate) * Number(pData.qty)) / 100
       }
 
-      console.log('Vat', typeof pData.setVatRow, '\nRate', typeof pData.rate, '\nQty', typeof pData.qty)
+      // console.log('Vat', typeof pData.setVatRow, '\nRate', typeof pData.rate, '\nQty', typeof pData.qty)
 
       $scope.getSizeObject = Object.keys(pData).length
 
@@ -108,16 +94,24 @@
 
     $scope.getTotal = function (obj) {
       var gmt = 0
+      $scope.vat = 14.00
       angular.forEach(obj, function (i, v) {
         gmt = gmt + i.amt
         console.log('Grand Total ', i.amt, gmt)
         $scope.total = gmt
+
+        // Grand Total with Vat Calculation
+        $scope.gTotal = (($scope.total * $scope.vat) / 100) + $scope.total
       })
     }
 
     $scope.editRow = function (evt, key, val) {
       evt.preventDefault()
       console.log(key, val)
+
+      // Calculatin the total
+      $scope.getTotal($scope.productList)
+
     }
 
     $scope.delRow = function (evt, key, val) {
@@ -125,14 +119,42 @@
 
       var index = $scope.productList.indexOf(val)
       $scope.productList.splice(index, 1)
+
+      // Calculatin the total
+      $scope.getTotal($scope.productList)
+
       window.localStorage['productRows'] = JSON.stringify($scope.productList)
     }
 
     $scope.formCancel = function (evt, data) {
       evt.preventDefault()
-    // $scope.productList.splice()
+
+      $scope.productList = []
+
+      // Calculatin the total
+      $scope.getTotal($scope.productList)
+
     }
     // console.log($scope.productList)
+
+    $scope.formSubmit = function (d, action) {
+      d.preventDefault()
+      /*
+        products : $scope.productList
+        Calculation: $scope.gTotal
+        vat : $scope.vat            
+      */
+
+      console.log($scope.productList, $scope.gTotal, $scope.vat, action)
+
+    /*var obj = ''
+    var url = 'dcServer/dc/'
+
+    var dt = serviceCall.getService(url, sData, function (data) {
+      $scope.msg = data
+      console.log('data', data)
+    })*/
+    }
 
   }
 

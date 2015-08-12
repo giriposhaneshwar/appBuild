@@ -238,3 +238,18 @@ ul.navItems li a.active{
 .ng-leave-active{
 	opacity: 0;
 }
+/* DC Form Page Terms and Conditions*/
+.termsAndCondition{
+	display: block;
+	padding: 10px 0px;
+	font-size: 0.86em;
+	color: #555;
+	border-bottom: 1px dashed #ccc;
+	border-top: 1px dashed #ccc;
+	margin-top: 20px;
+}
+.termsList{
+	padding: 0px 0px 0px 15px;
+	margin: 0px;
+	font-style: italic;
+}

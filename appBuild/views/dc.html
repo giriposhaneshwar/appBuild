@@ -46,15 +46,23 @@
 						<td></td>
 						<td></td>
 						<th colspan="2">Total</th>
-						<th>{{total}}</th>
+						<th>{{total | number:2}}</th>
 						<td></td>
 					</tr>
 				</table>
+
+				<div class="grandTotal" ng-if="productList.length > 0" >
+					<b>Grand Total (Vat:{{vat}}%) : {{gTotal | number:2}}</b>
+				</div>
+
+				<div class="termsAndCondition" ng-if="productList.length > 0" >
+					<div ng-include="'./html/termsAndConditions.html'"></div>
+				</div>
 			</div>
 			<div class="formButHolder text-center" ng-if="productList.length > 0">
-				<button class="btn btn-danger" ng-click="formSubmit($event, dc)">Add</button>
-				<button class="btn btn-danger" ng-click="formSubmit($event, dc)">Save &amp; Preview</button>
-				<button class="btn btn-danger" ng-click="formCancel($event, productList)">Cancel</button>
+				<button class="btn btn-danger" ng-click="formSubmit($event, 'a')">Add</button>
+				<button class="btn btn-danger" ng-click="formSubmit($event, 'p')">Save &amp; Preview</button>
+				<button class="btn btn-danger" ng-click="formCancel($event)">Cancel</button>
 			</div>
 		</form>
 	</div>
