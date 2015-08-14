@@ -14,6 +14,10 @@ class Dc extends Controller
     function getList($method, $postData){
     	$this->loadModelMethod($method, $postData);
     }
+
+    function addReport($method, $postData){
+    	$this->loadModelMethod($method, $postData);
+    }
     
 }
  ?>

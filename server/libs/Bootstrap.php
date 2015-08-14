@@ -39,6 +39,7 @@ class Bootstrap
         $url = explode('/', $url);
 		
 		// echo "URL : ". $d['method'];
+		// var_dump($url);
         $this->_url = $url;
 
         $this->_data = $d['data'];
@@ -49,6 +50,7 @@ class Bootstrap
 		$file = $this->Controller.$url.".php";
 
 		// echo $file. " | ".$method." | ".json_encode($data);
+		// echo $file." | ".file_exists($file)." lll";
 
 		if(file_exists($file)){
 			// getting controller

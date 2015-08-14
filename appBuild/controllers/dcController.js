@@ -130,6 +130,8 @@
       evt.preventDefault()
 
       $scope.productList = []
+      $scope.customerFormVal = []
+      $scope.dc = []
 
       // Calculatin the total
       $scope.getTotal($scope.productList)
@@ -143,17 +145,31 @@
         products : $scope.productList
         Calculation: $scope.gTotal
         vat : $scope.vat            
-      */
+        */
+      $scope.dcReport = {}
 
-      console.log($scope.productList, $scope.gTotal, $scope.vat, action)
+      $scope.dcReport.productRequirment = $scope.productList
+      $scope.dcReport.customerTo = $scope.customerFormVal
+      $scope.dcReport.grandTotal = $scope.gTotal
+      $scope.dcReport.actionPerform = action
 
-    /*var obj = ''
-    var url = 'dcServer/dc/'
+      console.log($scope.dcReport)
 
-    var dt = serviceCall.getService(url, sData, function (data) {
-      $scope.msg = data
-      console.log('data', data)
-    })*/
+      $scope.dataObject.data = $scope.dcReport
+      $scope.dataObject.method = 'dc/addReport'
+
+      var dt = serviceCall.getService($scope.dataObject, function (data) {
+        $scope.msg = data
+        console.log('data', data)
+        // {status: "Success", message: "Data added successfully"}
+
+        if(data.status == 'Success') {
+          alert(data.message)
+          $scope.formCancel(d, data)
+        } else {
+          // Handle the errors here
+        }
+      })
     }
 
   }

@@ -1,13 +1,13 @@
 <div class="container">
-<h1>DC</h1>
-<div class="panel panel-default formHolder">
-	<div class="panel-body">
-		<form method="post" class="form-inline">
-			<div class="customerDetails">
-				<label>Customer Details</label>
-				<!-- <input type="text" ng-model="dc.num" name="num" id="num" class="num form-control" placeholder="Dc Num"> -->
-				<input type="text" ng-model="dc.date" name="date" id="date" class="date form-control" placeholder="Dc Date" ng-blur="setDateForm(dc.date)">
-				<input type="text" ng-model="dc.email" name="email" id="email" class="customer form-control" placeholder="Customer">
+	<h1>DC</h1>
+	<div class="panel panel-default formHolder">
+		<div class="panel-body">
+			<form method="post" class="form-inline">
+				<div class="customerDetails">
+					<label>Customer Details</label>
+					<!-- <input type="text" ng-model="dc.num" name="num" id="num" class="num form-control" placeholder="Dc Num"> -->
+					<input type="text" ng-model="dc.date" name="date" id="date" class="date form-control" placeholder="Dc Date" ng-blur="setDateForm(dc.date)">
+					<input type="text" ng-model="dc.email" name="email" id="email" class="customer form-control" placeholder="Customer" ng-blur="setCustomerForm(dc.email)">
 				<!-- <select name="customer" ng-model="dc.customer" id="customer" class="customer form-control" ng-blur="setCustomerForm(dc.customer)">
 					<option ng-repeat="(key, val) in getProducts" value="{{val.iid}}">{{val.iName}}</option>
 				</select> -->
@@ -68,5 +68,5 @@
 	</div>
 </div>
 
-	<div class="resp">{{msg.phone}}</div>
+<div class="resp">{{msg.phone}}</div>
 </div>
