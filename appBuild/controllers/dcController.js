@@ -57,6 +57,12 @@
     // restricting to the numbres only
     // $scope.onlyNumbers = /^\d+$/
 
+    // Customer field alphabitical search function
+    $scope.callCustomers = function (e) {
+      console.log('Entered', e)
+    }
+
+    // Add row of product to the list
     $scope.addProductRow = function (evt, pData) {
       evt.preventDefault()
 
