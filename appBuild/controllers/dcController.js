@@ -169,7 +169,7 @@
         console.log('data', data)
         // {status: "Success", message: "Data added successfully"}
 
-        if(data.status == 'Success') {
+        if(data.status == 'success') {
           alert(data.message)
           $scope.formCancel(d, data)
         } else {
