@@ -1,1 +1,9 @@
-{{reports}}
+<div class="reportContainer">
+	<div class="reportHolder">
+		<ul>
+			<li ng-repeat="(key, value) in reportRow">
+				{{value.did}}. {{value.customer}}
+			</li>
+		</ul> 
+	</div>
+</div>

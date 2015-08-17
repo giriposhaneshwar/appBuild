@@ -20,23 +20,20 @@
       $scope.dataObject.data.res = ''
 
       var dt = serviceCall.getService($scope.dataObject, function (res) {
-        $scope.msg = res
-        console.log('DATA GET \n', res)
+        // console.log("Response form the server is ", res)
+        $scope.allReports = res
+        // console.log('Report stype ', $scope.allReports)
 
-        if(res.result == 'success') {
-          console.log('data', res)
-          $scope.er = true
-          $scope.resText = res.result
-          console.log(res)
-          window.localStorage['inUser'] = res.data.username
-          window.localStorage['user'] = res.data.personName
-          window.location.hash = '#/dashboard'
-        } else {
-          $scope.er = false
-          $scope.resText = 'Failed to login'
-        // window.location.hash = '#/login'
-        }
+        // console.log($scope.allReports.data)
+        $scope.reportRow = []
 
+        angular.forEach($scope.allReports.data, function (i, n) {
+          // converting the dcItemList from ithe data to json object
+          i.dcItemList = JSON.parse(JSON.parse(i.dcItemList))
+
+          $scope.reportRow.push(i)
+        })
+        console.log($scope.reportRow)
       })
     }
     $scope.getReports()
