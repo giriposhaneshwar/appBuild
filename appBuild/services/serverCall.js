@@ -12,11 +12,11 @@
         var rtn1 = {}
         var loggedInUser = {user: window.localStorage['inUser'], name: window.localStorage['user']}
 
-        console.log('getting the data type of ', JSON.stringify(data))
-
         if(typeof data == 'object') {
           data.data.loggedInUser = loggedInUser
         }
+
+        console.log('getting the data type of ', JSON.stringify(data))
 
         rtn = $http({
           url: urlPre,
