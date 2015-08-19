@@ -32,6 +32,10 @@ app.config(function ($routeProvider, $locationProvider) {// , $locationProvider
       templateUrl: './views/report.html',
       controller: 'reportController'
     })
+    .when('/reports/:act', {
+      templateUrl: './views/recordView.html',
+      controller: 'reportController'
+    })
     .when('/login', {
       templateUrl: './views/login.html',
       controller: 'loginController'

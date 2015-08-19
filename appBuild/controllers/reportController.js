@@ -2,10 +2,9 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var reportController = function ($scope, sTest, $http, serviceCall, $location) {
+  var reportController = function ($scope, sTest, $http, serviceCall, $location, $routeParams, $rootScope) {
     // $scope.msg = "Page loaded successfully"
     $scope.msg = 'Reports Page'
-
     // main controller page function
     $scope.page()
 
@@ -15,6 +14,7 @@
 
     $scope.allReports = []
 
+    // Getting list of reports 
     $scope.getReports = function () {
       $scope.dataObject.method = 'reports/getAllReports'
       $scope.dataObject.data.res = ''
@@ -26,17 +26,27 @@
 
         // console.log($scope.allReports.data)
         $scope.reportRow = []
-
         angular.forEach($scope.allReports.data, function (i, n) {
           // converting the dcItemList from ithe data to json object
           i.dcItemList = JSON.parse(JSON.parse(i.dcItemList))
-
           $scope.reportRow.push(i)
         })
-        console.log($scope.reportRow)
       })
     }
-    $scope.getReports()
+
+    // Getting the params
+    // Mapping the data to show in params page
+    $scope.recAction = $routeParams.act
+    $scope.rData = $scope.reportRow
+
+    $scope.paramAction = function (data) {
+      $rootScope.nrData = data
+    }
+    console.log('nrData', $rootScope.nrData)
+
+    if($rootScope.nrData == undefined) {
+      window.location.hash = '#/reports'
+    }
 
   }
 
