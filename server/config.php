@@ -2,7 +2,7 @@
 	$log =  $_SERVER['SERVER_ADDR'];
 	$sr = $_SERVER['HTTP_HOST'];
 
-	echo "Server REMOTE_ADDR, HTTP_HOST : ".$sr;
+	// echo "Server REMOTE_ADDR, HTTP_HOST : ".$sr;
 
 	if($sr == "localhost"){
 		// local credentials
