@@ -100,7 +100,7 @@
 
     $scope.getTotal = function (obj) {
       var gmt = 0
-      $scope.vat = 14.00
+      $scope.vat = 0
       angular.forEach(obj, function (i, v) {
         gmt = gmt + i.amt
         console.log('Grand Total ', i.amt, gmt)
