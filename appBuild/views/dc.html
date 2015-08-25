@@ -28,7 +28,8 @@
 						<th>Description</th>
 						<th>Qty</th>
 						<th>Rate</th>
-						<th>Amount(+rowvat)</th>
+						<th>Vat</th>
+						<th>Amount</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<tr ng-repeat="(key, val) in productList track by key">
@@ -36,6 +37,7 @@
 						<td>{{val.name}}</td>
 						<td>{{val.qty}}</td>
 						<td>{{val.rate}}</td>
+						<td>{{val.setVatRow}}</td>
 						<td>{{val.amt}}</td>
 						<td class="text-right">
 							<a href="#" ng-click="editRow($event, key, val)" class="btn btn-danger">E</a>
@@ -45,14 +47,14 @@
 					<tr>
 						<td></td>
 						<td></td>
-						<th colspan="2">Total</th>
+						<th colspan="3">Total</th>
 						<th>{{total | number:2}}</th>
 						<td></td>
 					</tr>
 				</table>
 
 				<div class="grandTotal" ng-if="productList.length > 0" >
-					<b>Grand Total (Vat:{{vat}}%) : {{gTotal | number:2}}</b>
+					<b>Grand Total : {{gTotal | number:2}}</b>
 				</div>
 
 				<div class="termsAndCondition" ng-if="productList.length > 0" >

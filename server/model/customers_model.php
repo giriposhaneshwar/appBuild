@@ -24,6 +24,8 @@
     }
 
     function insertCustomer($postData){
+        // print_r($postData);
+        // echo "\n\n\t";
         /* input model
         ----------------------
             {
@@ -38,23 +40,46 @@
         */
 
         // Inserting the data into database
-        $sth = $this->db->prepare("INSERT INTO 
-                                    customermaster(`cName`, `cCompany`, `cAddress`, `cType`, `cDesc`, `user_account`) 
-                                    VALUES(:customer, :company, :address, :type, :desc, :user)");
-        $res = $sth->execute(array(
-            ':customer' => $postData['customer'],
-            ':company' => $postData['company'],
-            ':address' => $postData['address'],
-            ':type' => $postData['companyType'],
-            ':desc' => $postData['description'],
-            ':user' => $postData['loggedUser'],
-        ));
+        $resultData = array();
 
-        if($res){
-            echo "Records inserted successfully";
-        }else{
-            echo $res;
+        try {
+            $sth = $this->db->prepare("INSERT INTO 
+                                        customermaster(`cName`, `cCompany`, `cAddress`, `cType`, `cDesc`, `user_account`) 
+                                        VALUES(:customer, :company, :address, :type, :description, :user)");
+           $res = $sth->execute(array(
+                ':customer' => $postData['res']['customer'],
+                ':company' => $postData['res']['company'],
+                ':address' => $postData['res']['address'],
+                ':type' => $postData['res']['companyType'],
+                ':description' => $postData['res']['description'],
+                ':user' => $postData['loggedInUser']['user'],
+            ));
+
+           if($res){
+                $resultData['status'] = "success";
+                $resultData['message'] = "Records inserted successfully";
+                echo json_encode($resultData);
+            }else{
+                echo "failed";
+            }
+        }catch(PDOException $e){
+            $resultData['status'] = "failed";
+            $resultData['message'] = "Request failed. Please try again!";
+            $resultData['error'] = $e->getMessage();
+            echo json_encode($resultData);
+            die();
         }
+        /*if($res){
+            // $resultData['status'] = "success";
+            // $resultData['message'] = "Records inserted successfully";
+            // echo json_encode($resultData);
+            echo "success";
+        }else{
+            // $resultData['status'] = "failed";
+            // $resultData['message'] = "Request failed. Please try again!";
+            // echo json_encode($resultData);
+            echo "failed";
+        }*/
 
         /*$count =  $sth->rowCount();
         if ($count > 0) {
