@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 21, 2015 at 07:17 PM
+-- Generation Time: Aug 25, 2015 at 03:09 PM
 -- Server version: 5.5.38-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -30,8 +30,16 @@ CREATE TABLE IF NOT EXISTS `billno` (
   `bid` int(11) NOT NULL AUTO_INCREMENT,
   `bill` int(11) NOT NULL,
   `user_account` int(11) NOT NULL,
-  PRIMARY KEY (`bid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`bid`),
+  KEY `user_account` (`user_account`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `billno`
+--
+
+INSERT INTO `billno` (`bid`, `bill`, `user_account`) VALUES
+(1, 100, 1);
 
 -- --------------------------------------------------------
 
@@ -48,14 +56,22 @@ CREATE TABLE IF NOT EXISTS `customermaster` (
   `cDesc` text,
   `user_account` varchar(11) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `customermaster`
 --
 
 INSERT INTO `customermaster` (`cid`, `cName`, `cCompany`, `cAddress`, `cType`, `cDesc`, `user_account`) VALUES
-(1, 'Hanuman', 'Himalaya', 'Kashmir', 'Support', 'Helps in supproting when needed.', 'admin');
+(1, 'Hanuman', 'Himalaya', 'Kashmir', 'Support', 'Helps in supproting when needed.', 'admin'),
+(2, 'giriy', 'techvedika', 'madhapur', 'software', 'we develop mobile application.', 'giriy'),
+(3, 'giriy', 'techvedika', 'madhapur', 'software', 'development company', ''),
+(4, 'Raghu', 'ICat', 'gachibowli', 'Software', 'Development company', 'giriy'),
+(5, 'Ashok', 'Map Doc', 'Madhapur', 'Stad Design', 'Cad Development', 'giriy'),
+(6, 'Eshwar', 'red ray', 'Kondapur', 'Gaming Deve', 'Gaming Development', 'giriy'),
+(7, 'asdf', 'asfd', 'asdf', 'asdf', 'asdf', 'giriy'),
+(8, 'Mano', 'Google', 'Madaram', 'software co', 'multi products', 'giriy'),
+(9, 'sdf', 'sdf', 'asdf', 'sadf', 'asdf', 'giriy');
 
 -- --------------------------------------------------------
 
@@ -68,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `dcreport` (
   `customer` varchar(150) NOT NULL,
   `company` varchar(150) NOT NULL,
   `address` text NOT NULL,
-  `billNo.` int(10) unsigned zerofill NOT NULL,
+  `billno` int(10) unsigned zerofill NOT NULL,
   `billDate` varchar(20) NOT NULL,
   `dcItemList` text NOT NULL,
   `grandTotal` text NOT NULL,
@@ -79,8 +95,21 @@ CREATE TABLE IF NOT EXISTS `dcreport` (
   `active` tinyint(1) NOT NULL,
   `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_account` int(11) NOT NULL,
-  PRIMARY KEY (`did`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`did`),
+  KEY `user_account` (`user_account`),
+  KEY `user_account_2` (`user_account`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `dcreport`
+--
+
+INSERT INTO `dcreport` (`did`, `customer`, `company`, `address`, `billno`, `billDate`, `dcItemList`, `grandTotal`, `discount`, `vat`, `totalAmount`, `deliveryAddress`, `active`, `createdOn`, `user_account`) VALUES
+(1, 'gy', '', '', 0000000000, '17-08-2015', '"[{\\"name\\":\\"r1\\",\\"rate\\":\\"12\\",\\"qty\\":\\"12\\",\\"setVatRow\\":\\"5\\",\\"amt\\":151.2}]"', '172.368', '', '', '172.368', '', 1, '2015-08-17 09:14:46', 1),
+(3, 'ahmed', '', '', 0000000000, '17-08-2015', '"[{\\"name\\":\\"ram\\",\\"rate\\":\\"1800\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":15120},{\\"name\\":\\"keyboard\\",\\"rate\\":\\"350\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":2940},{\\"name\\":\\"mouse\\",\\"rate\\":\\"250\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":2100},{\\"name\\":\\"speaker\\",\\"rate\\":\\"1100\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":9240},{\\"name\\":\\"printer\\",\\"rate\\":\\"6500\\",\\"qty\\":\\"1\\",\\"setVatRow\\":\\"8\\",\\"amt\\":7020},{\\"name\\":\\"led monitor\\",\\"rate\\":\\"8500\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":71400}]"', '122914.8', '', '', '122914.8', '', 1, '2015-08-17 09:21:02', 1),
+(4, 'ahmed', '', '', 0000000000, '17-08-2015', '"[{\\"name\\":\\"ram\\",\\"rate\\":\\"1800\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":15120},{\\"name\\":\\"keyboard\\",\\"rate\\":\\"350\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":2940},{\\"name\\":\\"mouse\\",\\"rate\\":\\"250\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":2100},{\\"name\\":\\"speaker\\",\\"rate\\":\\"1100\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":9240},{\\"name\\":\\"printer\\",\\"rate\\":\\"6500\\",\\"qty\\":\\"1\\",\\"setVatRow\\":\\"8\\",\\"amt\\":7020},{\\"name\\":\\"led monitor\\",\\"rate\\":\\"8500\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":71400},{\\"name\\":\\"motherboard\\",\\"rate\\":\\"3500\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":29400},{\\"name\\":\\"cabinet\\",\\"rate\\":\\"900\\",\\"qty\\":\\"8\\",\\"setVatRow\\":\\"5\\",\\"amt\\":7560}]"', '165049.2', '', '', '165049.2', '', 1, '2015-08-17 09:21:40', 1),
+(5, 'giriposhaneshwar', '', '', 0000000000, '17-08-2015', '"[{\\"name\\":\\"grapes\\",\\"rate\\":\\"45\\",\\"qty\\":\\"25\\",\\"setVatRow\\":\\"5\\",\\"amt\\":1181.25},{\\"name\\":\\"apples\\",\\"rate\\":\\"10\\",\\"qty\\":\\"200\\",\\"setVatRow\\":\\"5\\",\\"amt\\":2100}]"', '3740.625', '', '', '3740.625', '', 1, '2015-08-17 09:30:51', 1),
+(6, 'gy', '', '', 0000000000, '17-08-2015', '"[{\\"name\\":\\"r1\\",\\"rate\\":\\"12\\",\\"qty\\":\\"12\\",\\"setVatRow\\":\\"5\\",\\"amt\\":151.2}]"', '172.368', '', '', '172.368', '', 1, '2015-08-19 06:15:24', 1);
 
 -- --------------------------------------------------------
 
@@ -138,6 +167,22 @@ CREATE TABLE IF NOT EXISTS `user_accounts` (
 
 INSERT INTO `user_accounts` (`uid`, `username`, `password`, `personName`, `company`, `companyType`, `accountType`, `introduction`, `logo`, `email`, `phone`, `address`, `secretQuestion`, `secretAnswer`) VALUES
 (1, 'giriy', 'admin', 'Giriy Poshaneeshwar', 'icsitpark', 'software', 'admin', 'we are the leading web designing and development c', 'icsitpar', 'info@icsitpark.com', '7893585898', '', '', '');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `billno`
+--
+ALTER TABLE `billno`
+  ADD CONSTRAINT `billno_ibfk_1` FOREIGN KEY (`user_account`) REFERENCES `user_accounts` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `dcreport`
+--
+ALTER TABLE `dcreport`
+  ADD CONSTRAINT `dcreport_ibfk_1` FOREIGN KEY (`user_account`) REFERENCES `user_accounts` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
