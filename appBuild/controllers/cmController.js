@@ -40,12 +40,14 @@
     // Adding customer to database
     $scope.addCustomer = function (d, data) {
       d.preventDefault()
-      console.log('Adding Customer is ', d, data, $scope.dcReport)
+      console.log('Adding Customer is ', $scope.dataObject, data, $scope.dcReport)
 
 
-       $scope.dataObject.data = $scope.dcReport
-       $scope.dcReport.data.res = data;
+       // $scope.dataObject.data = $scope.dcReport
+       $scope.dataObject.data.res = data;
       $scope.dataObject.method = 'customers/insertCustomer'
+
+      console.log("Sending object to add customer", $scope.dataObject);
 
       var dt = serviceCall.getService($scope.dataObject, function (data) {
         $scope.msg = data
