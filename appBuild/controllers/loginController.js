@@ -43,7 +43,7 @@
 
       var dt = serviceCall.getService($scope.dataObject, function (res) {
         $scope.msg = res
-        console.log('DATA GET \n', res)
+        console.log('DATA GET \n', res);
 
         if(res.result == 'success') {
           console.log('data', res)

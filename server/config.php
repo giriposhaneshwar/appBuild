@@ -2,9 +2,9 @@
 	$log =  $_SERVER['SERVER_ADDR'];
 	$sr = $_SERVER['HTTP_HOST'];
 
-	// echo "Server REMOTE_ADDR, HTTP_HOST : ".$sr;
-
-	if($log == "127.0.0.1"){
+	// echo "Server REMOTE_ADDR, HTTP_HOST : ".$sr." /// ".$log;
+// echo "new line addes";
+	if($sr == "localhost"){
 		// local credentials
 		define("DB_TYPE", "mysql");
 		define("DB_HOST", "localhost");
