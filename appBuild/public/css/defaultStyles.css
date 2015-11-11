@@ -205,6 +205,17 @@ ul.navItems li a.active{
 }
 /*  Customer Page Styles End ------------------*/
 
+/*  Product Page Styles ------------------*/
+.pmContentHolder .itemHolder{
+	display: block;
+}
+.pmContentHolder .itemHolder table tr:first-child{
+	background-color: #303030;
+	color: #fff;
+}
+/*  Product Page Styles End ------------------*/
+
+
 /* -- FOOTER STYLES --------*/
 .footerContainer{
 	display: block;

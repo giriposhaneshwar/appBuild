@@ -1,1 +1,38 @@
-{{msg}}
+<div class="cmHolder">
+	<div class="tabContainer">
+		<ul class="tabItems">
+			<li ng-class="{'active': tabActive == 'addProduct'}" ng-click="addProductTab()">Add Product</li>
+			<li ng-class="{'active': tabActive == 'productsList'}"  ng-click="productsListTab()">Products List</li>
+		</ul>
+	</div>
+	<hr>
+	<div class="pmContentHolder">
+		<div class="addProductsRow" ng-if="tabActive== 'addProduct'">
+			Adding Product
+		</div>
+		<!-- Customer List Section -->
+		<div class="addProductsRow" ng-if="tabActive== 'productsList'">
+			
+			<div class="itemHolder">
+				<table class="table table-striped table-bordered">
+					<tr>
+						<th>Code</th>
+						<th>Product</th>
+						<th>Type</th>
+						<th>Price</th>
+						<th>Qty</th>
+						<th>Description</th>
+					</tr>
+					<tr ng-repeat="item in pList">
+						<td>{{item.iCode}}</td>
+						<td>{{item.iName}}</td>
+						<td>{{item.iType}}</td>
+						<td>{{item.iPrice}}</td>
+						<td>{{item.iQty}}</td>
+						<td>{{item.iDesc}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
