@@ -78,6 +78,25 @@
       }
     }
 
+    // main controller page function
+    $scope.requestData = function(){
+      // Request the server
+      $scope.dataObject.method = 'dashboard/getStats'
+      $scope.dataObject.data.res = ''
+
+      console.log('Sending data', $scope.dataObject)
+
+      var dt = serviceCall.getService($scope.dataObject, function (data) {
+        $scope.msg = data
+        console.log('dashboard/getStats', data)
+      })
+    }
+
+    // Check Duplicate entries
+    $scope.checkDuplicate = function(url, data, cb){
+      console.log(url, data);
+    }
+
     // Loading the list of products and customers
     $scope.getList = function () {
       $scope.dataObject.method = 'getdata/getList'

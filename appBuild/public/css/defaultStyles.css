@@ -209,7 +209,8 @@ ul.navItems li a.active{
 .pmContentHolder .itemHolder{
 	display: block;
 }
-.pmContentHolder .itemHolder table tr:first-child{
+.pmContentHolder .itemHolder table tr:first-child,
+.addCustomerRow table tr:first-child{
 	background-color: #303030;
 	color: #fff;
 }

@@ -28,32 +28,38 @@
         // echo "\n\n\t";
         /* input model
         ----------------------
-            {
-              "company"       : "Techvedika"
-              "customer"      : "Giriy"
-              "phone"         : "123"
-              "email"         : "tech@tech.com"
-              "address"       : "madhapur"
-              "description"   : "development company"
-              "companyType"   : "software company"
-            }
+            address: "secunderabad"
+            company: "Indotech Technologies"
+            companyType: "sales & services"
+            customer: "Ahmed"
+            description: "computer sales and services"
+            email: "indotech@gmail.com"
+            phone: "9876543210"
+            tin: "878763983287"
         */
 
         // Inserting the data into database
         $resultData = array();
 
+        // $resultData = $postData;
+
         try {
             $sth = $this->db->prepare("INSERT INTO 
-                                        customermaster(`cName`, `cCompany`, `cAddress`, `cType`, `cDesc`, `user_account`) 
-                                        VALUES(:customer, :company, :address, :type, :description, :user)");
+                                        customermaster(`name`, `company`, `address`, `type`, `tin`, `phone`, `email`, `desc`, `user_account`) 
+                                        VALUES(:customer, :company, :address, :type, :tin, :phone, :email, :description, :user)");
            $res = $sth->execute(array(
                 ':customer' => $postData['res']['customer'],
                 ':company' => $postData['res']['company'],
                 ':address' => $postData['res']['address'],
                 ':type' => $postData['res']['companyType'],
+                ':tin' => $postData['res']['tin'],
+                ':phone' => $postData['res']['phone'],
+                ':email' => $postData['res']['email'],
                 ':description' => $postData['res']['description'],
                 ':user' => $postData['loggedInUser']['user'],
             ));
+
+
 
            if($res){
                 $resultData['status'] = "success";
@@ -69,6 +75,8 @@
             echo json_encode($resultData);
             die();
         }
+
+
         /*if($res){
             // $resultData['status'] = "success";
             // $resultData['message'] = "Records inserted successfully";

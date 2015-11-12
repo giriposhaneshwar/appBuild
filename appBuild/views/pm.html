@@ -14,8 +14,9 @@
 		<div class="addProductsRow" ng-if="tabActive== 'productsList'">
 			
 			<div class="itemHolder">
-				<table class="table table-striped table-bordered">
+				<table class="table table-striped table-bordered table-hover table-condensed">
 					<tr>
+						<th>SNo</th>
 						<th>Code</th>
 						<th>Product</th>
 						<th>Type</th>
@@ -23,7 +24,8 @@
 						<th>Qty</th>
 						<th>Description</th>
 					</tr>
-					<tr ng-repeat="item in pList">
+					<tr ng-repeat="(k,item) in pList">
+						<td>{{k+1}}</td>
 						<td>{{item.iCode}}</td>
 						<td>{{item.iName}}</td>
 						<td>{{item.iType}}</td>

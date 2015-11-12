@@ -17,6 +17,16 @@
 							<input type="text" ng-model="company.company" class="form-control" name="companyName" id="companyName" placeholder="ex: Company Name">
 						</div>
 						<div class="form-group">
+							<label for="custType">Type</label>
+							<input type="text" class="form-control" ng-model="company.companyType" name="companyType" id="custType" placeholder="ex: Manugacturer">
+						</div>
+						<div class="form-group">
+							<label for="custType">TIN</label>
+							<input type="text" class="form-control" ng-model="company.tin" name="companyTin" id="custTin" placeholder="ex: 98768765456545">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
 							<label for="custName">Name</label>
 							<input type="text" ng-model="company.customer" class="form-control" name="customerName" id="custName" placeholder="ex: giriy">
 						</div>
@@ -29,18 +39,16 @@
 							<input type="text" class="form-control" ng-model="company.email" name="customerEmail" id="custEmail" placeholder="ex: egp.designs@gmail.com">
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-6">						
 						<div class="form-group">
 							<label for="address">Address</label>
 							<textarea class="form-control textareaSize" ng-model="company.address" name="customerAddress" id="address"></textarea>
 						</div>
+					</div>
+					<div class="col-sm-6">						
 						<div class="form-group">
 							<label for="description">Description</label>
 							<textarea class="form-control textareaSize" ng-model="company.description" name="companyDescription" id="description"></textarea>
-						</div>
-						<div class="form-group">
-							<label for="custType">Type</label>
-							<input type="text" class="form-control" ng-model="company.companyType" name="companyType" id="custType" placeholder="ex: Manugacturer">
 						</div>
 					</div>
 					<div class="col-sm-12 form-group text-left">
@@ -49,24 +57,36 @@
 				</div>
 			</form>
 		</div>
-
-
 		<!-- Customer List Section -->
 		<div class="addCustomerRow" ng-if="tabActive== 'customerList'">
-			<ul>
-				<li ng-repeat="item in cList">
-					<div class="itemHolder">
-						<b>{{item.cName}}</b>
-						<div class="details">
-							<b>Company :</b>{{item.cCompany}} ({{item.cType}}), 
-							<b>Address :</b>{{item.cAddress}}, 
-							<b>Description :</b>{{item.cDesc}}
-						</div>
-					</div>
-				</li>
-			</ul>
+			<table class="table table-striped table-bordered table-hover table-condensed">
+				<tr>
+					<td>SNo</td>
+					<td>Name</td>
+					<td>Company</td>
+					<td>Address</td>
+					<td>Phone</td>
+					<td>Email</td>
+					<td>Tin</td>
+					<td>Description</td>
+					<td>Options</td>
+				</tr>
+				<tr ng-repeat="(k,item) in cList">
+					<td>{{k+1}}</td>
+					<td>{{item.name}}</td>
+					<td>{{item.company}}</td>
+					<td>{{item.address}}</td>
+					<td>{{item.phone}}</td>
+					<td>{{item.email}}</td>
+					<td>{{item.tin}}</td>
+					<td>{{item.desc}}</td>
+					<td>
+						<a  ng-click="editCustomer($event, item)" class="btn btn-danger">E</a>
+						<a  ng-click="delCustomer($event, item)" class="btn btn-danger">D</a>
+					</td>
+				</tr>
+			</table>
+			<!-- {{cList | json}} -->
 		</div>
-
-
 	</div>
 </div>

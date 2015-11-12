@@ -15,7 +15,7 @@
     		console.log("data", data);		
     	});*/
 
-    // main controller page function
+    
 
     $scope.page()
 

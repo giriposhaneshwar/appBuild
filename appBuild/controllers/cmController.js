@@ -10,7 +10,7 @@
 
     // $scope.msg = $http.get(url)
     $scope.curNav = $location.path().substring(1)
-    $scope.tabActive = 'customerList'
+    $scope.tabActive = 'addCustomer'
 
     // Customer Page Tab Functions
     $scope.addCustomerTab = function () {
@@ -40,6 +40,10 @@
     // Adding customer to database
     $scope.addCustomer = function (d, data) {
       d.preventDefault()
+
+      // check whether the name is existing or not
+      if($scope.checkDuplicate(appData.customers, data) < 1){
+
       console.log('Adding Customer is ', $scope.dataObject, data, $scope.dcReport)
 
 
@@ -55,14 +59,26 @@
         // {status: "Success", message: "Data added successfully"}
 
         if(data.status == 'success') {
-          alert(data.message)
-          $scope.formCancel(d, data)
+          console.log("Return Data", data)
+          // Calling All Data
+          $scope.requestData();
+          $scope.customerListTab();
+          // $scope.formCancel(d, data)
         } else {
+          console.log(data)
           // Handle the errors here
         }
       })
+    }else{
+      console.log("Duplicates found");
+    }
 
 
+    }
+
+    // Edit Customer 
+    $scope.editCustomer = function(d, a, b){
+      console.log(d, a, b);
     }
   }
 

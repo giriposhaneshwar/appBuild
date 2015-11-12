@@ -17,7 +17,7 @@
 				<input type="text" ng-model="product.name" name="name" id="name" class="name form-control" placeholder="Name / Code">
 				<input type="text" ng-model="product.rate" name="rate" id="rate" class="Phone form-control" placeholder="Rate">
 				<input type="text" ng-model="product.qty" name="qty" id="qty" class="email form-control" placeholder="Quantity">
-				<input type="text" ng-model="product.setVatRow" name="vat" id="vat" class="email form-control" placeholder="vat (Optional)">
+				<!-- <input type="text" ng-model="product.setVatRow" name="vat" id="vat" class="email form-control" placeholder="vat (Optional)"> -->
 				<a class="btn btn-danger" ng-click="addProductRow($event, product)">Add Row</a>
 			</div>
 			<div class="productList">
@@ -28,7 +28,7 @@
 						<th>Description</th>
 						<th>Qty</th>
 						<th>Rate</th>
-						<th>Vat</th>
+						<!-- <th>Vat</th> -->
 						<th>Amount</th>
 						<th class="text-center">Options</th>
 					</tr>
@@ -37,7 +37,7 @@
 						<td>{{val.name}}</td>
 						<td>{{val.qty}}</td>
 						<td>{{val.rate}}</td>
-						<td>{{val.setVatRow}}</td>
+						<!-- <td>{{val.setVatRow}}</td> -->
 						<td>{{val.amt}}</td>
 						<td class="text-right">
 							<a href="#" ng-click="editRow($event, key, val)" class="btn btn-danger">E</a>
