@@ -2,7 +2,8 @@
   var app = angular.module('appBuild')
 
   app.factory('serviceCall', function ($http) {
-    var urlPre = 'http://localhost/appbuild/server/'
+    // var urlPre = 'http://localhost/appbuild/server/'
+    var urlPre = 'http://icsitpark.in/server/'
 
     return {
       getService: function (data, cb) {

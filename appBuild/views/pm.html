@@ -8,7 +8,42 @@
 	<hr>
 	<div class="pmContentHolder">
 		<div class="addProductsRow" ng-if="tabActive== 'addProduct'">
-			Adding Product
+			<h1>Add Product</h1>
+			<form class="form">
+				<div class="row">
+					<div class="col-sm-6 addFrom">
+						<div class="form-group">
+							<label for="companyName">Code</label>
+							<input type="text" ng-model="product.code" class="form-control" name="companyName" id="companyName" placeholder="ex: Company Name">
+						</div>
+						<div class="form-group">
+							<label for="custType">Name</label>
+							<input type="text" class="form-control" ng-model="product.name" name="companyType" id="custType" placeholder="ex: Manugacturer">
+						</div>
+						<div class="form-group">
+							<label for="custType">Type</label>
+							<input type="text" class="form-control" ng-model="product.type" name="companyTin" id="custTin" placeholder="ex: 98768765456545">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custName">Price</label>
+							<input type="text" ng-model="product.price" class="form-control" name="customerName" id="custName" placeholder="ex: giriy">
+						</div>
+						<div class="form-group">
+							<label for="custPhone">Qty</label>
+							<input type="text" class="form-control" ng-model="product.qty" name="customerPhone" id="custPhone" placeholder="ex: 7893585898">
+						</div>
+						<div class="form-group">
+							<label for="custEmail">Description</label>
+							<input type="text" class="form-control" ng-model="product.description" name="customerEmail" id="custEmail" placeholder="ex: egp.designs@gmail.com">
+						</div>
+					</div>
+					<div class="col-sm-12 form-group text-left">
+						<input type="button" ng-click="addProduct($event, product)" class="btn btn-danger" value="Add Product">
+					</div>
+				</div>
+			</form>
 		</div>
 		<!-- Customer List Section -->
 		<div class="addProductsRow" ng-if="tabActive== 'productsList'">
@@ -26,12 +61,12 @@
 					</tr>
 					<tr ng-repeat="(k,item) in pList">
 						<td>{{k+1}}</td>
-						<td>{{item.iCode}}</td>
-						<td>{{item.iName}}</td>
-						<td>{{item.iType}}</td>
-						<td>{{item.iPrice}}</td>
-						<td>{{item.iQty}}</td>
-						<td>{{item.iDesc}}</td>
+						<td>{{item.code}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.type}}</td>
+						<td>{{item.price}}</td>
+						<td>{{item.qty}}</td>
+						<td>{{item.desc}}</td>
 					</tr>
 				</table>
 			</div>

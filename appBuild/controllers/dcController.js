@@ -45,6 +45,7 @@
     }
 
     $scope.getProducts = appData.products
+    $scope.getCustomers = appData.customers
 
     $('.date').datetimepicker({
       'pickTime':false,
@@ -60,6 +61,7 @@
     // Customer field alphabitical search function
     $scope.callCustomers = function (e) {
       console.log('Entered', e)
+      return appData.customers;
     }
 
     // Add row of product to the list

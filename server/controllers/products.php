@@ -14,6 +14,11 @@ class Products extends Controller
     function getStats($method, $postData){
     	$this->loadModelMethod($method, $postData);
     }
+
+    // Adding Product
+    function insertProduct($method, $postData){
+    	$this->loadModelMethod($method, $postData);
+    }
     
 }
  ?>

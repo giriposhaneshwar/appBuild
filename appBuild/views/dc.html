@@ -7,68 +7,69 @@
 					<label>Customer Details</label>
 					<!-- <input type="text" ng-model="dc.num" name="num" id="num" class="num form-control" placeholder="Dc Num"> -->
 					<input type="text" ng-model="dc.date" name="date" id="date" class="date form-control" placeholder="Dc Date" ng-blur="setDateForm(dc.date)">
-					<input type="text" ng-model="dc.email" name="email" id="email" class="customer form-control" placeholder="Customer" ng-blur="setCustomerForm(dc.email)" ng-focus="callCustomers($event)">
-				<!-- <select name="customer" ng-model="dc.customer" id="customer" class="customer form-control" ng-blur="setCustomerForm(dc.customer)">
-					<option ng-repeat="(key, val) in getProducts" value="{{val.iid}}">{{val.iName}}</option>
-				</select> -->
-			</div>
-
-			<div class="addProduct">
-				<input type="text" ng-model="product.name" name="name" id="name" class="name form-control" placeholder="Name / Code">
-				<input type="text" ng-model="product.rate" name="rate" id="rate" class="Phone form-control" placeholder="Rate">
-				<input type="text" ng-model="product.qty" name="qty" id="qty" class="email form-control" placeholder="Quantity">
-				<!-- <input type="text" ng-model="product.setVatRow" name="vat" id="vat" class="email form-control" placeholder="vat (Optional)"> -->
-				<a class="btn btn-danger" ng-click="addProductRow($event, product)">Add Row</a>
-			</div>
-			<div class="productList">
-				<!-- {{productList.length}} -->
-				<table ng-if="productList.length > 0" class="table  table-striped">
-					<tr>
-						<th>S.No.</th>
-						<th>Description</th>
-						<th>Qty</th>
-						<th>Rate</th>
-						<!-- <th>Vat</th> -->
-						<th>Amount</th>
-						<th class="text-center">Options</th>
-					</tr>
-					<tr ng-repeat="(key, val) in productList track by key">
-						<td>{{key+1}}</td>
-						<td>{{val.name}}</td>
-						<td>{{val.qty}}</td>
-						<td>{{val.rate}}</td>
-						<!-- <td>{{val.setVatRow}}</td> -->
-						<td>{{val.amt}}</td>
-						<td class="text-right">
-							<a href="#" ng-click="editRow($event, key, val)" class="btn btn-danger">E</a>
-							<a href="#" ng-click="delRow($event, key, val)" class="btn btn-danger">D</a>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<th colspan="3">Total</th>
-						<th>{{total | number:2}}</th>
-						<td></td>
-					</tr>
-				</table>
-
-				<div class="grandTotal" ng-if="productList.length > 0" >
-					<b>Grand Total : {{gTotal | number:2}}</b>
+					<!-- <input type="text" ng-model="dc.customer" name="email" id="email" class="customer form-control" placeholder="Customer" ng-blur="setCustomerForm(dc.customer)" ng-focus="callCustomers($event)"> -->
+					<select name="customer" ng-model="dc.customer" id="customer" class="customer form-control" ng-blur="setCustomerForm(dc.customer)">
+							<option ng-repeat="(key, val) in getCustomers" value="{{val.iid}}">{{val.name}}</option>
+					</select>
 				</div>
+				<div class="addProduct">
+					<!-- <input type="text" ng-model="product.name" name="name" id="name" class="name form-control" placeholder="Name / Code"> -->
+					
+					<select name="customer" ng-model="product.name" id="productName" class="customer form-control">
+							<option ng-repeat="(key, val) in getProducts" value="{{val.iid}}">{{val.code}} ({{val.name}})</option>
+					</select>
 
-				<div class="termsAndCondition" ng-if="productList.length > 0" >
-					<div ng-include="'./html/termsAndConditions.html'"></div>
+					<input type="text" ng-model="product.rate" name="rate" id="rate" class="Phone form-control" placeholder="Rate">
+					<input type="text" ng-model="product.qty" name="qty" id="qty" class="email form-control" placeholder="Quantity">
+					<!-- <input type="text" ng-model="product.setVatRow" name="vat" id="vat" class="email form-control" placeholder="vat (Optional)"> -->
+					<a class="btn btn-danger" ng-click="addProductRow($event, product)">Add Row</a>
 				</div>
-			</div>
-			<div class="formButHolder text-center" ng-if="productList.length > 0">
-				<button class="btn btn-danger" ng-click="formSubmit($event, 'a')">Add</button>
-				<button class="btn btn-danger" ng-click="formSubmit($event, 'p')">Save &amp; Preview</button>
-				<button class="btn btn-danger" ng-click="formCancel($event)">Cancel</button>
-			</div>
-		</form>
+				<div class="productList">
+					<!-- {{productList.length}} -->
+					<table ng-if="productList.length > 0" class="table  table-striped">
+						<tr>
+							<th>S.No.</th>
+							<th>Description</th>
+							<th>Qty</th>
+							<th>Rate</th>
+							<!-- <th>Vat</th> -->
+							<th>Amount</th>
+							<th class="text-center">Options</th>
+						</tr>
+						<tr ng-repeat="(key, val) in productList track by key">
+							<td>{{key+1}}</td>
+							<td>{{val.name}}</td>
+							<td>{{val.qty}}</td>
+							<td>{{val.rate}}</td>
+							<!-- <td>{{val.setVatRow}}</td> -->
+							<td>{{val.amt}}</td>
+							<td class="text-right">
+								<a href="#" ng-click="editRow($event, key, val)" class="btn btn-danger">E</a>
+								<a href="#" ng-click="delRow($event, key, val)" class="btn btn-danger">D</a>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<th colspan="3">Total</th>
+							<th>{{total | number:2}}</th>
+							<td></td>
+						</tr>
+					</table>
+					<div class="grandTotal" ng-if="productList.length > 0" >
+						<b>Grand Total : {{gTotal | number:2}}</b>
+					</div>
+					<div class="termsAndCondition" ng-if="productList.length > 0" >
+						<div ng-include="'./html/termsAndConditions.html'"></div>
+					</div>
+				</div>
+				<div class="formButHolder text-center" ng-if="productList.length > 0">
+					<button class="btn btn-danger" ng-click="formSubmit($event, 'a')">Add</button>
+					<button class="btn btn-danger" ng-click="formSubmit($event, 'p')">Save &amp; Preview</button>
+					<button class="btn btn-danger" ng-click="formCancel($event)">Cancel</button>
+				</div>
+			</form>
+		</div>
 	</div>
-</div>
-
-<div class="resp">{{msg.phone}}</div>
+	<div class="resp">{{msg.phone}}</div>
 </div>

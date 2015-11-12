@@ -20,7 +20,7 @@
       });
 
       // Default Activating the Products List
-      $scope.tabActive = 'productsList'
+      $scope.tabActive = 'addProduct'
 
       // Adding Product
       $scope.addProductTab = function() {
@@ -31,6 +31,44 @@
       $scope.productsListTab = function() {
         $scope.tabActive = 'productsList';
         $scope.pList = appData.products;
+      }
+
+      // Adding New Product
+      $scope.addProduct = function(d, data) {
+        console.log(d, data);
+
+        // check whether the name is existing or not
+        // if ($scope.checkDuplicate(appData.products, data) < 1) {
+
+          console.log('Adding Product is ', $scope.dataObject, data)
+
+
+          // $scope.dataObject.data = $scope.dcReport
+          $scope.dataObject.data.res = data;
+          $scope.dataObject.method = 'products/insertProduct'
+
+          console.log("Sending object to add Product", $scope.dataObject);
+
+          var dt = serviceCall.getService($scope.dataObject, function(data) {
+            $scope.msg = data
+            console.log('data', data)
+              // {status: "Success", message: "Data added successfully"}
+
+            if (data.status == 'success') {
+              console.log("Return Data", data)
+                // Calling All Data
+              $scope.requestData();
+              $scope.productsListTab();
+              // $scope.formCancel(d, data)
+            } else {
+              console.log(data)
+                // Handle the errors here
+            }
+          })
+        /*} else {
+          console.log("Duplicates found");
+        }*/
+
       }
 
       if ($scope.tabActive == 'productsList') {
