@@ -4,23 +4,32 @@
 		<div class="panel-body">
 			<form method="post" class="form-inline">
 				<div class="customerDetails">
-					<label>Customer Details</label>
+					<b>DC No.: </b> 123
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label>Date</label>
 					<!-- <input type="text" ng-model="dc.num" name="num" id="num" class="num form-control" placeholder="Dc Num"> -->
 					<input type="text" ng-model="dc.date" name="date" id="date" class="date form-control" placeholder="Dc Date" ng-blur="setDateForm(dc.date)">
 					<!-- <input type="text" ng-model="dc.customer" name="email" id="email" class="customer form-control" placeholder="Customer" ng-blur="setCustomerForm(dc.customer)" ng-focus="callCustomers($event)"> -->
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label>Customer Name</label>
 					<select name="customer" ng-model="dc.customer" id="customer" class="customer form-control" ng-blur="setCustomerForm(dc.customer)">
 							<option ng-repeat="(key, val) in getCustomers" value="{{val.iid}}">{{val.name}}</option>
 					</select>
 				</div>
 				<div class="addProduct">
 					<!-- <input type="text" ng-model="product.name" name="name" id="name" class="name form-control" placeholder="Name / Code"> -->
-					
-					<select name="customer" ng-model="product.name" id="productName" class="customer form-control">
-							<option ng-repeat="(key, val) in getProducts" value="{{val.iid}}">{{val.code}} ({{val.name}})</option>
+					<select name="customer" ng-model="product.name" id="productName" class="customer form-control" placeholder="Code" ng-change="getRates(product)">
+							<option value="">--Code--</option>
+							<option ng-repeat="(key, val) in getProducts" value="{{val.pid}}">{{val.code}}</option>
+					</select>
+
+					<select name="customer" ng-model="product.name" id="productName" class="customer form-control"  ng-change="getRates(product)">
+							<option value="">--Product Name--</option>
+							<option ng-repeat="(key, val) in getProducts" value="{{val.pid}}">{{val.name}}</option>
 					</select>
 
 					<input type="text" ng-model="product.rate" name="rate" id="rate" class="Phone form-control" placeholder="Rate">
-					<input type="text" ng-model="product.qty" name="qty" id="qty" class="email form-control" placeholder="Quantity">
+					<input type="text" ng-model="product.qty" name="qty" id="qty" class="email form-control" placeholder="Quantity" ng-keydown="$event.which === 13 && addProductRow($event, product)">
 					<!-- <input type="text" ng-model="product.setVatRow" name="vat" id="vat" class="email form-control" placeholder="vat (Optional)"> -->
 					<a class="btn btn-danger" ng-click="addProductRow($event, product)">Add Row</a>
 				</div>
@@ -71,5 +80,5 @@
 			</form>
 		</div>
 	</div>
-	<div class="resp">{{msg.phone}}</div>
+	<div class="resp">{{msg}}</div>
 </div>

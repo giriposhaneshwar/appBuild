@@ -18,6 +18,10 @@ class Dc extends Controller
     function addReport($method, $postData){
     	$this->loadModelMethod($method, $postData);
     }
+
+    function dcNumber($method, $postData){
+        $this->loadModelMethod($method, $postData);
+    }
     
 }
  ?>

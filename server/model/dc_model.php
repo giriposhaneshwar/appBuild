@@ -22,6 +22,44 @@ class Dc_Model extends Model
 		echo "Data is able to show the dc model data";
 	}
 
+	function dcNumber($postData){        
+        $loggedUser = $postData['loggedInUser']['user'];
+        // get user by id
+        $user = $this->getUserByName($loggedUser);
+
+        // echo $user['uid'];
+        
+        // sth = $this->db->prepare("SELECT * FROM `billno` WHERE `user_account`= ".$user['uid']);
+        // $sth->execute();        
+        // $data = $sth->fetchAll();
+        // $count =  $sth->rowCount();
+
+        // if ($count > 0) {
+        //     // List of products
+        //     // $getBill = $data;
+        // 	echo json_encode($data);
+        // } else {
+        //     echo "No product to show : ".$count;
+        // }
+    }
+
+    function getUserByName($user){
+    	$sth = $this->db->prepare("SELECT * FROM `user_accounts` WHERE `username`= :username");
+        $sth->execute(array(
+        		':username' => $user
+        	));        
+        $data = $sth->fetchAll();
+        $count =  $sth->rowCount();
+        
+        if ($count > 0) {
+            // List of products
+            $billno = $data[0];
+        } else {
+            echo "No product to show : ".$count;
+        }
+        return $billno;
+    }
+
 	function addReport($postData){
 
     	$rep = array();

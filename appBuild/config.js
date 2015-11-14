@@ -14,6 +14,8 @@
 
   }
 
+  
+
   // Defining the controller
   app.controller('conf', conf)
 }())

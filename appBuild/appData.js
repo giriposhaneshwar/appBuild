@@ -1,5 +1,11 @@
 var appData = {
   customerFormVal: [],
   customers: [],
-  products: []
+  products: [],
 }
+
+// Local
+var serverCon = 'http://localhost/appbuild/server/';
+
+// Netrowk
+// var serverCon = 'http://icsitpark.in/server/';
