@@ -17,22 +17,17 @@
     var url = 'http://localhost/appBuildServer'
     $scope.msg = 'DC Form'
 
+
+    // get the DC Number
     $scope.getDcNum = function() {
       // dc/dcNumber
       // $scope.dataObject.data = $scope.dcReport
       $scope.dataObject.method = 'dc/dcNumber'
 
       var dt = serviceCall.getService($scope.dataObject, function(data) {
-        $scope.msg = data
-        console.log('data', data)
-          // {status: "Success", message: "Data added successfully"}
-/*
-        if (data.status == 'success') {
-          alert(data.message)
-          $scope.formCancel(d, data)
-        } else {
-          // Handle the errors here
-        }*/
+        // $scope.msg = data
+        $scope.dcNumber = data;
+        console.log('DC Number', data);
       })
     }
     $scope.getDcNum();
@@ -213,6 +208,7 @@
 
       $scope.dcReport.productRequirment = $scope.productList
       $scope.dcReport.customerTo = $scope.customerFormVal
+      $scope.dcReport.customerTo.billno = $scope.dcNumber
       $scope.dcReport.grandTotal = $scope.gTotal
       $scope.dcReport.actionPerform = action
 
@@ -221,18 +217,21 @@
       $scope.dataObject.data = $scope.dcReport
       $scope.dataObject.method = 'dc/addReport'
 
-      var dt = serviceCall.getService($scope.dataObject, function(data) {
-        $scope.msg = data
-        console.log('data', data)
-          // {status: "Success", message: "Data added successfully"}
 
-        if (data.status == 'success') {
-          alert(data.message)
-          $scope.formCancel(d, data)
-        } else {
-          // Handle the errors here
-        }
-      })
+
+      // var dt = serviceCall.getService($scope.dataObject, function(data) {
+      //   $scope.msg = data
+      //   console.log('data', data)
+      //     // {status: "Success", message: "Data added successfully"}
+
+      //   if (data.status == 'success') {
+      //     alert(data.message)
+      //     $scope.formCancel(d, data)
+      //     $scope.getDcNum();
+      //   } else {
+      //     // Handle the errors here
+      //   }
+      // })
     }
 
   }

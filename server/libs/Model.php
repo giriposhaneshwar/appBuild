@@ -1,12 +1,14 @@
 <?php
+
 /**
-* Model Construction
-*/
-class Model
-{
-	
-	function __construct() {
+ * Model Construction
+ */
+class Model {
+
+    function __construct() {
         $this->db = new Database(DB_TYPE, DB_HOST, DB_NAME, DB_USER, DB_PASS);
     }
+
 }
+
 ?>

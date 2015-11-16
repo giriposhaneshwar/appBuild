@@ -32,7 +32,7 @@ app.config(function ($routeProvider, $locationProvider) {// , $locationProvider
       templateUrl: './views/report.html',
       controller: 'reportController'
     })
-    .when('/reports/:act', {
+    .when('/reports/:act/:id', {
       templateUrl: './views/recordView.html',
       controller: 'reportController'
     })

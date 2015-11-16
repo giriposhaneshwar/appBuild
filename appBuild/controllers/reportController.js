@@ -28,6 +28,11 @@
         $scope.reportRow = []
         angular.forEach($scope.allReports.data, function (i, n) {
           // converting the dcItemList from ithe data to json object
+          angular.forEach(appData.customers, function(a, b){
+            if(a.cid == i.customer){
+              i.customer = a.name;
+            }
+          });
           i.dcItemList = JSON.parse(JSON.parse(i.dcItemList))
           $scope.reportRow.push(i)
         })
@@ -37,6 +42,7 @@
     // Getting the params
     // Mapping the data to show in params page
     $scope.recAction = $routeParams.act
+    $scope.reportId = $routeParams.id
     $scope.rData = $scope.reportRow
 
     $scope.paramAction = function (data) {

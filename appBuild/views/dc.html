@@ -4,7 +4,7 @@
 		<div class="panel-body">
 			<form method="post" class="form-inline">
 				<div class="customerDetails">
-					<b>DC No.: </b> 123
+					<b>DC No.: </b> {{dcNumber}}
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label>Date</label>
 					<!-- <input type="text" ng-model="dc.num" name="num" id="num" class="num form-control" placeholder="Dc Num"> -->
@@ -13,7 +13,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label>Customer Name</label>
 					<select name="customer" ng-model="dc.customer" id="customer" class="customer form-control" ng-blur="setCustomerForm(dc.customer)">
-							<option ng-repeat="(key, val) in getCustomers" value="{{val.iid}}">{{val.name}}</option>
+							<option ng-repeat="(key, val) in getCustomers" value="{{val.cid}}"> {{val.cid}} -- {{val.name}}</option>
 					</select>
 				</div>
 				<div class="addProduct">
@@ -80,5 +80,5 @@
 			</form>
 		</div>
 	</div>
-	<div class="resp">{{msg}}</div>
+	<div class="resp"></div>
 </div>
