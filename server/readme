@@ -1,3 +1,23 @@
+DC Submition:
+{
+    "productRequirment":[{
+        "name":"sewing machine",
+        "rate":"25000",
+        "qty":"8",
+        "setVatRow":0,
+        "amt":200000
+    }],
+    "customerTo":{
+        "date":"17-11-2015",
+        "customer":"8",
+        "billno":"3"
+    },
+    "grandTotal":200000,
+    "actionPerform":"p"
+}
+
+
+
 {
     "projects": [],
     "requests": [
