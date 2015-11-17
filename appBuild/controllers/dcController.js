@@ -219,19 +219,19 @@
 
 
 
-      // var dt = serviceCall.getService($scope.dataObject, function(data) {
-      //   $scope.msg = data
-      //   console.log('data', data)
-      //     // {status: "Success", message: "Data added successfully"}
+      var dt = serviceCall.getService($scope.dataObject, function(data) {
+        $scope.msg = data
+        console.log('data', data)
+          // {status: "Success", message: "Data added successfully"}
 
-      //   if (data.status == 'success') {
-      //     alert(data.message)
-      //     $scope.formCancel(d, data)
-      //     $scope.getDcNum();
-      //   } else {
-      //     // Handle the errors here
-      //   }
-      // })
+        if (data.status == 'success') {
+          alert(data.message)
+          $scope.formCancel(d, data)
+          $scope.getDcNum();
+        } else {
+          // Handle the errors here
+        }
+      })
     }
 
   }
