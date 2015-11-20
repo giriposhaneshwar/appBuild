@@ -24,6 +24,10 @@ app.config(function ($routeProvider, $locationProvider) {// , $locationProvider
       templateUrl: './views/cm.html',
       controller: 'cmController'
     })
+    .when('/customers/:id', {
+      templateUrl: './views/customerEdit.html',
+      controller: 'cmController'
+    })
     .when('/products', {
       templateUrl: './views/pm.html',
       controller: 'pmController'
@@ -32,7 +36,7 @@ app.config(function ($routeProvider, $locationProvider) {// , $locationProvider
       templateUrl: './views/report.html',
       controller: 'reportController'
     })
-    .when('/reports/:act/:id', {
+    .when('/reportsview/:act/:id', {
       templateUrl: './views/recordView.html',
       controller: 'reportController'
     })

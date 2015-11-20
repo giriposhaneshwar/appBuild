@@ -43,7 +43,7 @@ class Dc_Model extends Model {
         if ($count > 0) {
             // List of products
             // $getBill = $data;
-            $this->billNow = $data[0]['bill'];
+            $this->billNow = $data[0]['dcNum'];
             return $this->billNow;
         } else {
             echo "No product to show : " . $count;

@@ -44,7 +44,6 @@ class Getdata_Model extends Model {
 
         echo json_encode($buildObj);
     }
-
 }
 
 ?>

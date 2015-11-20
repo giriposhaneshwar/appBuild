@@ -102,10 +102,10 @@
       $scope.dataObject.method = 'getdata/getList'
       $scope.dataObject.data.res = {}
 
-      console.log('Sending Data', $scope.dataObject)
+      // console.log('Sending Data', $scope.dataObject)
 
       var dt = serviceCall.getService($scope.dataObject, function (res) {
-        console.log('getdata/getList\n', res)
+        // console.log('getdata/getList\n', res)
         appData.products = res.productList
         appData.customers = res.customerList
       })
