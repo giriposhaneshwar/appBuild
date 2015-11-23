@@ -60,12 +60,12 @@
 
       // $scope.dataObject.data = $scope.dcReport
       $scope.dataObject.data.res = data;
-      if('cid' in data){
+      if ('cid' in data) {
         // console.log("this is update statement", data);
         $scope.dataObject.method = 'customers/updateCustomer'
-      }else{
+      } else {
         $scope.dataObject.method = 'customers/insertCustomer'
-        // console.log("this is Adding State", data);
+          // console.log("this is Adding State", data);
       }
 
       console.log("Sending object to add customer", $scope.dataObject);
@@ -75,10 +75,11 @@
         console.log('data', data)
           // {status: "Success", message: "Data added successfully"}
 
-          console.log("Return Data", data)
+        console.log("Return Data", data)
         if (data.status == 'success') {
-            // Calling All Data
+          // Calling All Data
           $scope.requestData();
+          window.location.href = '#/customers';
           $scope.customerListTab();
           // $scope.formCancel(d, data)
         } else {
@@ -91,7 +92,7 @@
     // Edit Customer 
     $scope.reportId = $routeParams.id
 
-     $scope.paramAction = function(data) {
+    $scope.paramAction = function(data) {
       // delete data.cid;
       $rootScope.editCust = data;
       // console.log($rootScope.editCust);
@@ -100,19 +101,44 @@
     if ($scope.reportId != undefined) {
       // get data according to the 
       if ($rootScope.editCust != undefined) {
-        
+
         // $scope.nrProductList = $rootScope.;
         $scope.company = $rootScope.editCust;
 
       }
-    }else{
+    } else {
       window.location.hash = '#/customers'
     }
 
     // onclick cancel at form
     $scope.addCancel = function(e, data) {
       window.location.href = '#/customers';
-      $scope.company.company = "next stop";
+    }
+
+    // Deleting the customer
+    $scope.delCustomer = function(evt, data) {
+      // $scope.dataObject.data = $scope.dcReport
+      $scope.dataObject.data.res = data;
+      $scope.dataObject.method = 'customers/deleteCustomer'
+      
+
+      console.log("Sending object to add customer", $scope.dataObject);
+
+      var dt = serviceCall.getService($scope.dataObject, function(data) {
+        // $scope.msg = data
+
+        if (data.status == 'success') {
+          // Calling All Data
+          console.log("Return Data", data)
+          $scope.requestData();
+          $scope.customerListTab();
+          // window.location.href = '#/customers';
+          // $scope.formCancel(d, data)
+        } else {
+          console.log("Failed Data", data)
+            // Handle the errors here
+        }
+      });
     }
 
   }
