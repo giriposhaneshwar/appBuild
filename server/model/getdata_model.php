@@ -12,11 +12,12 @@ class Getdata_Model extends Model {
     }
 
     // Login User 
-    public function getList($postData) {
-        // echo "this is getdata/getList Model\n";
+    function getList($postData) {
+//        print_r($postData);
         $buildObj = array();
         // pulling the product list
-        $sth = $this->db->prepare("SELECT * FROM itemmaster");
+        $sth = $this->db->prepare("SELECT * FROM itemmaster WHERE `user_account`= :user");
+        $sth->bindValue(':user', $postData['userid']);
         $sth->execute();
         $data = $sth->fetchAll(PDO::FETCH_ASSOC);
         $count = $sth->rowCount();
@@ -29,7 +30,8 @@ class Getdata_Model extends Model {
         }
 
         // Pulling the customer list
-        $cList = $this->db->prepare("SELECT * FROM customermaster");
+        $cList = $this->db->prepare("SELECT * FROM customermaster WHERE `user_account`= :user");
+        $cList->bindValue(':user', $postData['userid']);
         $cList->execute();
         $customer = $cList->fetchAll(PDO::FETCH_ASSOC);
         $cCount = $cList->rowCount(PDO::FETCH_ASSOC);
@@ -41,8 +43,10 @@ class Getdata_Model extends Model {
         } else {
             echo "No Customer to Show : " . $cCount;
         }
+        
+        return $buildObj;
 
-        echo json_encode($buildObj);
+//        echo json_encode($buildObj);
     }
 }
 

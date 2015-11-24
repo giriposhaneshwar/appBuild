@@ -2,7 +2,7 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var conf = function ($scope, sTest, $http, serviceCall, $location) {
+  var conf = function ($scope, $http, serviceCall, $location) {
     // Configuration Settings
     $scope.pageTitle = 'Application'
 

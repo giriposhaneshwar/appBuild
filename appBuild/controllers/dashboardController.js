@@ -2,7 +2,7 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var dashboardController = function ($scope, sTest, $http, serviceCall, $location) {
+  var dashboardController = function ($scope,  $http, serviceCall, $location) {
     // $scope.msg = "Page loaded successfully"
     $scope.msg = 'Dashboard Page'
 

@@ -80,7 +80,7 @@ class Customers extends Controller {
 
         // Sending the Object to insert into Database
         $response = $this->loadModelMethod($method, $toSendData);
-        
+
         echo json_encode($response);
     }
 

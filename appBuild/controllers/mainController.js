@@ -2,7 +2,7 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var mainController = function ($scope, sTest, $http, serviceCall, $location) {
+  var mainController = function ($scope, $http, serviceCall, $location) {
     // $scope.msg = "Page loaded successfully"
     // $scope.msg = $http.get(url)
 
@@ -79,16 +79,20 @@
     }
 
     // main controller page function
+
+    // Loading the list of products and customers
     $scope.requestData = function(){
       // Request the server
-      $scope.dataObject.method = 'dashboard/getStats'
-      $scope.dataObject.data.res = ''
+      $scope.dataObject.method = 'getdata/getList'
+      $scope.dataObject.data.res = {}
 
       console.log('Sending data', $scope.dataObject)
 
-      var dt = serviceCall.getService($scope.dataObject, function (data) {
-        $scope.msg = data
-        console.log('dashboard/getStats', data)
+      var dt = serviceCall.getService($scope.dataObject, function (res) {
+        // $scope.msg = res
+        console.log('getdata/getList', res)
+        appData.products = res.productList
+        appData.customers = res.customerList
       })
     }
 
@@ -97,22 +101,12 @@
       console.log(url, data);
     }
 
-    // Loading the list of products and customers
-    $scope.getList = function () {
-      $scope.dataObject.method = 'getdata/getList'
-      $scope.dataObject.data.res = {}
+    
 
-      // console.log('Sending Data', $scope.dataObject)
-
-      var dt = serviceCall.getService($scope.dataObject, function (res) {
-        // console.log('getdata/getList\n', res)
-        appData.products = res.productList
-        appData.customers = res.customerList
-      })
-    }
+    console.log("Scope GetOn", $scope.getOn);
 
     if($scope.getOn != undefined) {
-      $scope.getList()
+      $scope.requestData()
     }
 
   // setting up the navigation menu

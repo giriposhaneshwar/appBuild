@@ -2,7 +2,7 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var reportController = function($scope, sTest, $http, serviceCall, $location, $routeParams, $rootScope) {
+  var reportController = function($scope,  $http, serviceCall, $location, $routeParams, $rootScope) {
     // $scope.msg = "Page loaded successfully"
     $scope.msg = 'Reports Page'
       // main controller page function

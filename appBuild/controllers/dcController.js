@@ -2,7 +2,7 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var dcController = function($scope, sTest, $http, serviceCall, $location) {
+  var dcController = function($scope,  $http, serviceCall, $location) {
     // Local Storage Values set
     window.localStorage['customerRows'] = ''
     window.localStorage['productRows'] = ''

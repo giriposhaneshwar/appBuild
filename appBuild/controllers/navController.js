@@ -2,7 +2,7 @@
 	// 'use strict';
 	var app = angular.module("appBuild");
 
-	var navController = function($scope, sTest, $http, serviceCall, $location, $window){
+	var navController = function($scope,  $http, serviceCall, $location, $window){
 		$scope.msg = "Navigation container";
 
 		$scope.curNav;

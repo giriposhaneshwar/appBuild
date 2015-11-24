@@ -2,7 +2,7 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var homeController = function ($scope, sTest, $http, serviceCall, $location) {
+  var homeController = function ($scope,  $http, serviceCall, $location) {
     // $scope.msg = "Page loaded successfully"
     $scope.msg = 'Home Page'
     // $scope.msg = $http.get(url)

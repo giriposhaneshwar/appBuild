@@ -2,7 +2,7 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var pmController = function($scope, sTest, $http, serviceCall, $location) {
+  var pmController = function($scope,  $http, serviceCall, $location) {
       // $scope.msg = "Page loaded successfully"
       $scope.msg = 'PM Page'
         // main controller page function

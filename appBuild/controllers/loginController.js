@@ -2,7 +2,7 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var loginController = function ($scope, sTest, $http, serviceCall, $location) {
+  var loginController = function ($scope,  $http, serviceCall, $location) {
     // Check login
     $scope.getOn = window.localStorage['user']
     // console.log($scope.getOn)

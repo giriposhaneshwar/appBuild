@@ -2,7 +2,7 @@
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var cmController = function($scope, sTest, $http, serviceCall, $location, $routeParams, $rootScope) {
+  var cmController = function($scope, $http, serviceCall, $location, $routeParams, $rootScope) {
     $scope.msg = 'CM Page'
 
     // main controller page function
