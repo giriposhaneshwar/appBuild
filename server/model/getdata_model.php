@@ -26,7 +26,7 @@ class Getdata_Model extends Model {
             // List of products
             $buildObj['productList'] = $data;
         } else {
-            echo "No product to show : " . $count;
+            $buildObj['productList'] = $data;
         }
 
         // Pulling the customer list
@@ -41,7 +41,7 @@ class Getdata_Model extends Model {
             // List of Customers
             $buildObj['customerList'] = $customer;
         } else {
-            echo "No Customer to Show : " . $cCount;
+            $buildObj['customerList'] = $customer;
         }
         
         return $buildObj;

@@ -7,7 +7,7 @@
     $scope.msg = 'Dashboard Page'
 
     // Request the server
-    $scope.requestData();
+    // $scope.requestData();
 
     // main controller page function
     $scope.page()

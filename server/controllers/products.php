@@ -17,7 +17,22 @@ class Products extends Controller
 
     // Adding Product
     function insertProduct($method, $postData){
-    	$this->loadModelMethod($method, $postData);
+        
+        // getting the user id by using the name
+        $user = $this->getIdByName($postData['loggedInUser']);
+
+        $toSendData['userid'] = $user[0]['uid'];
+        $toSendData['data'] = $postData['res'];
+        
+//        pid, name, type, code, price, qty, unit, vat, desc, active, addedOn, user,
+//        
+//        pid, name, type, code, price, qty, unit, vat, desc, active, addedOn, user_account
+        
+        
+        // Sending the Created object to model object
+    	$response = $this->loadModelMethod($method, $toSendData);
+        
+        echo json_encode($response);
     }
     
 }

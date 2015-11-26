@@ -31,6 +31,10 @@ app.config(function ($routeProvider, $locationProvider) {// , $locationProvider
     .when('/products', {
       templateUrl: './views/pm.html',
       controller: 'pmController'
+    })    
+    .when('/products/:id', {
+      templateUrl: './views/productEdit.html',
+      controller: 'pmController'
     })
     .when('/reports', {
       templateUrl: './views/report.html',
