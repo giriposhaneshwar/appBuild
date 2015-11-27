@@ -11,11 +11,6 @@ class Customers_Model extends Model {
         // echo "this is login model\n";
     }
 
-    // Login User 
-    function getStats($postData) {
-        echo "Getting the stats of dashboard";
-    }
-
     function getList($postData) {
         // getting the customer list
         $stm = $this->db->prepare('SELECT * FROM `customermaster` WHERE `user_account`="' . $postData['userid'] . '"');

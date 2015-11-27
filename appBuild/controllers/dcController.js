@@ -206,17 +206,17 @@
           */
       $scope.dcReport = {}
 
-      $scope.dcReport.productRequirment = $scope.productList
-      $scope.dcReport.customerTo = $scope.customerFormVal
-      $scope.dcReport.customerTo.billno = $scope.dcNumber
-      $scope.dcReport.grandTotal = $scope.gTotal
-      $scope.dcReport.actionPerform = action
+      $scope.dcReport.res['productRequirment'] = $scope.productList
+      $scope.dcReport.res['customerTo'] = $scope.customerFormVal
+      $scope.dcReport.res['customerTo'].billno = $scope.dcNumber
+      $scope.dcReport.res['grandTotal'] = $scope.gTotal
+      $scope.dcReport.res['actionPerform'] = action
 
-      console.log($scope.dcReport)
 
       $scope.dataObject.data = $scope.dcReport
       $scope.dataObject.method = 'dc/addReport'
 
+      console.log("Sending Object", $scope.dataObject)
 
 
       var dt = serviceCall.getService($scope.dataObject, function(data) {

@@ -73,31 +73,6 @@ class Dc_Model extends Model {
         // var_dump($postData);
         // print_r($postData);
 
-        /*
-          {
-          "productRequirment": [
-          {
-          "name": "r",
-          "rate": "12",
-          "qty": "13",
-          "setVatRow": "5",
-          "amt": 163.8
-          }
-          ],
-          "customerTo": {
-          "date": "14-08-2015",
-          "customer": "gy"
-          },
-          "grandTotal": 186.73200000000003,
-          "actionPerform": "p",
-          "loggedInUser": {
-          "user": "giriy",
-          "name": "Giriy Poshaneeshwar"
-          },
-          "res": ""
-          }
-         */
-
         $pList = json_encode($postData['productRequirment']);
         $customer = (string) $postData['customerTo']['customer'];
         $dcDate = (string) $postData['customerTo']['date'];
@@ -144,7 +119,7 @@ class Dc_Model extends Model {
             
             $billAdd = (int) $this->billNow;
             
-            $bill = $this->db->prepare("UPDATE  `appBuild`.`billno` SET  `bill` = :bill WHERE  `billno`.`bid` =1");
+            $bill = $this->db->prepare("UPDATE  `billno` SET  `dcNum` = :dcNum WHERE  `billno`.`bid` = :user");
             $bill->execute(array(
                 ':bill' => $billAdd+1
             ));
