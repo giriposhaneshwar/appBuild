@@ -23,12 +23,15 @@ class login_Model extends Model {
 
         $data = $sth->fetch(PDO::FETCH_ASSOC);
 
+
         $count = $sth->rowCount();
         if ($count > 0) {
             // Login Success send the data to redirect the page
+            
             $buildObj['result'] = "success";
             $buildObj['page'] = "dashboard";
             $buildObj['data'] = $data;
+
 
             echo json_encode($buildObj);
         } else {

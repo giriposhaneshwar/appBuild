@@ -1,19 +1,19 @@
-(function () {
+(function() {
   // 'use strict'
   var app = angular.module('appBuild')
 
-  var loginController = function ($scope,  $http, serviceCall, $location) {
+  var loginController = function($scope, $http, serviceCall, $location) {
     // Check login
     $scope.getOn = window.localStorage['user']
-    // console.log($scope.getOn)
+      // console.log($scope.getOn)
 
-    if($scope.getOn != undefined) {
-      if($scope.getOn.length == 0) {
+    if ($scope.getOn != undefined) {
+      if ($scope.getOn.length == 0) {
         window.localStorage.removeItem('user')
         window.localStorage.removeItem('login')
         window.location.hash = '#/login'
       } else {
-        if(window.localStorage['user'] == undefined && window.localStorage['login'] == undefined) {
+        if (window.localStorage['user'] == undefined && window.localStorage['login'] == undefined) {
           window.localStorage.removeItem('user')
           window.localStorage.removeItem('login')
         }
@@ -26,37 +26,44 @@
 
     // $scope.msg = "Page loaded successfully"
     $scope.msg = 'Login Page'
-    // $scope.msg = $http.get(url)
-    // window.location.hash = '/home'
+      // $scope.msg = $http.get(url)
+      // window.location.hash = '/home'
 
     // main controller page function
     $scope.page()
 
-    $scope.login = function (d, data) {
+    $scope.login = function(d, data) {
       d.preventDefault()
-      // console.log(d, data)
+        // console.log(d, data)
 
       $scope.dataObject.method = 'login/loginUser'
       $scope.dataObject.data.res = data
 
       console.log('Sending Data', $scope.dataObject)
 
-      var dt = serviceCall.getService($scope.dataObject, function (res) {
+      var dt = serviceCall.getService($scope.dataObject, function(res) {
         $scope.msg = res
         console.log('DATA GET \n', res);
 
-        if(res.result == 'success') {
-          console.log('data', res)
+        if (res.result == 'success') {
+
+
           $scope.er = true
-          $scope.resText = res.result
-          console.log(res)
+          $scope.resText = "Login successfully";
           window.localStorage['inUser'] = res.data.username
           window.localStorage['user'] = res.data.personName
-          window.location.hash = '#/dashboard'
+
+          setTimeout(function(){
+            // Getting Data          
+            $scope.requestData();
+            window.location.hash = '#/dashboard'
+          }, 2000);
+
+
         } else {
           $scope.er = false
           $scope.resText = 'Failed to login'
-        // window.location.hash = '#/login'
+            // window.location.hash = '#/login'
         }
 
       })

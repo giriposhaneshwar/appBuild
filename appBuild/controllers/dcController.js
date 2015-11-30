@@ -14,7 +14,7 @@
     console.log('$scope.productLocal', $scope.productLocal)
 
     // $scope.msg = "Page loaded successfully"
-    var url = 'http://localhost/appBuildServer'
+    var url = serverCon
     $scope.msg = 'DC Form'
 
 
@@ -23,6 +23,8 @@
       // dc/dcNumber
       // $scope.dataObject.data = $scope.dcReport
       $scope.dataObject.method = 'dc/dcNumber'
+
+      console.log("Getting DC Number : ", $scope.dataObject);
 
       var dt = serviceCall.getService($scope.dataObject, function(data) {
         // $scope.msg = data
@@ -205,13 +207,16 @@
           vat : $scope.vat            
           */
       $scope.dcReport = {}
+      $scope.dcData = {}
 
-      $scope.dcReport.res['productRequirment'] = $scope.productList
-      $scope.dcReport.res['customerTo'] = $scope.customerFormVal
-      $scope.dcReport.res['customerTo'].billno = $scope.dcNumber
-      $scope.dcReport.res['grandTotal'] = $scope.gTotal
-      $scope.dcReport.res['actionPerform'] = action
 
+      $scope.dcData.productRequirment = $scope.productList
+      $scope.dcData.header = $scope.customerFormVal
+      $scope.dcData.billno = $scope.dcNumber
+      $scope.dcData.grandTotal = $scope.gTotal
+      $scope.dcData.actionPerform = action
+
+     $scope.dcReport.res = $scope.dcData;
 
       $scope.dataObject.data = $scope.dcReport
       $scope.dataObject.method = 'dc/addReport'

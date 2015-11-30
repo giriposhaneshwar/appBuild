@@ -4,6 +4,7 @@
 		<div class="panel-body">
 			<form method="post" class="form-inline">
 				<div class="customerDetails">
+				<!-- {{getCustomers | json}} -->
 					<b>DC No.: </b> {{dcNumber}}
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label>Date</label>
@@ -13,7 +14,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label>Customer Name</label>
 					<select name="customer" ng-model="dc.customer" id="customer" class="customer form-control" ng-blur="setCustomerForm(dc.customer)">
-							<option ng-repeat="(key, val) in getCustomers" value="{{val.cid}}"> {{val.cid}} -- {{val.name}}</option>
+							<option ng-repeat="(key, val) in getCustomers" value="{{val.cid}}">{{val.company}}</option>
 					</select>
 				</div>
 				<div class="addProduct">

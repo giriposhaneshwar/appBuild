@@ -5,7 +5,7 @@ var appData = {
 }
 
 // Local
-var serverCon = 'http://localhost/appbuild/server/';
+// var serverCon = 'http://localhost/appbuild/server/';
 
 // Netrowk
-// var serverCon = 'http://icsitpark.in/server/';
+var serverCon = 'http://icsitpark.in/appbuild/server/';

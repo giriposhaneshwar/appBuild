@@ -14,15 +14,15 @@ class Reports_Model extends Model {
     // Login User
     function getAllReports($postData) {
         // echo "Getting the stats of products";
-        $sth = $this->db->prepare("SELECT * FROM dcreport");
-        $sth->execute();
+        $sth = $this->db->prepare("SELECT * FROM dcreport WHERE `user_account`= :user");
+        $sth->execute(array(':user' => $postData['userid']));
 
         $data = $sth->fetchAll(PDO::FETCH_ASSOC);
 
         $count = $sth->rowCount();
         if ($count > 0) {
             // Login Success send the data to redirect the page
-            $buildObj['result'] = "success";
+            $buildObj['status'] = "success";
             $buildObj['page'] = "reports";
             $buildObj['data'] = $data;
             /* foreach($data as $i=>$k){
@@ -30,7 +30,7 @@ class Reports_Model extends Model {
               $ndata[$i]['dcItemList'] = $this->unescape($k['dcItemList']);
               } */
 
-            echo json_encode($buildObj);
+            return $buildObj;
         } else {
             // header('location: ../login');
             echo "No Data to show : " . $count;

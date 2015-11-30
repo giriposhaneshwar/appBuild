@@ -1,8 +1,8 @@
 <a href="#/reports" class="btn btn-primary">Go Back</a>
 <div class="mainContainer">
-	{{nrData |  json}}
+	<!-- {{nrData |  json}} -->
 	<br>
-	<div class="dcBillFormat">
+	<div class="dcBillFormat" id="dcBillFormat">
 		<div class="companyHeading section1 text-center">
 			<h1 style="text-transform: uppercase;">Indotech Technologies</h1>
 			<p>5-1-526, 2nd Floor, Ganji Complex, Hill Street Ranigunj, Secunderabad - 500003, 9299701935, indotech06@gmail.com</p>
@@ -13,20 +13,18 @@
 			<table class="table">
 				<tr>
 					<td class="customerInfo">
-						<b>M/s {{nrData.company}}</b>
-						<p>
-							{{nrData.address}}
-						</p>
+						<b>M/s {{nrData.customer.name}}</b>
+						<p>{{nrData.customer.address}}</p>
 					</td>
 					<td class="billDetails">
 						<table>
 							<tr>
 								<td>Date</td>
-								<td>{{nrDate.billDate}}</td>
+								<td>{{nrData.billDate}}</td>
 							</tr>
 							<tr>
 								<td>Bill No </td>
-								<td>{{nrDate.billno}}</td>
+								<td>{{nrData.billno}}</td>
 							</tr>
 						</table>
 					</td>
@@ -50,13 +48,16 @@
 					<td>{{v.name}}</td>
 					<td>{{v.rate}}</td>
 					<td>{{v.qty}}</td>
-					<td>{{v.amt}}</td>
+					<td><b>{{v.amt}}</b></td>
 				</tr>
 				<tr>
 					<td colspan="4">Amount</td>
-					<td>{{<nrData class=""></nrData>totalAmount}}</td>
+					<td><b>{{nrData.totalAmount}}</b></td>
 				</tr>
 			</table>
 		</div>
+	</div>
+	<div class="print">
+		<a class="btn btn-primary" ng-click="printIt()">Print</a>
 	</div>
 </div>

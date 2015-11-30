@@ -16,6 +16,7 @@
     } else {
       window.location.hash = '#/login'
       window.localStorage.clear()
+      appData = {}
     // window.localStorage.removeItem('user')
     }
 

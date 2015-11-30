@@ -24,18 +24,14 @@ class Dc_Model extends Model {
 
     function dcNumber($postData) {
         $bill = $this->renderBill($postData);
-        echo $bill;
+        return $bill;
     }
 
     function renderBill($postData) {
-        $loggedUser = $postData['loggedInUser']['user'];
-        // get user by id
-        $user = $this->getUserByName($loggedUser);
+//        print_r($postData);
+        $user = $postData['userid'];
 
-//         echo $user['uid'];
-
-
-        $sth = $this->db->prepare("SELECT * FROM `billno` WHERE `user_account`= " . $user['uid']);
+        $sth = $this->db->prepare("SELECT * FROM `billno` WHERE `user_account`= " . $user);
         $sth->execute();
         $data = $sth->fetchAll(PDO::FETCH_ASSOC);
         $count = $sth->rowCount();
@@ -43,10 +39,10 @@ class Dc_Model extends Model {
         if ($count > 0) {
             // List of products
             // $getBill = $data;
-            $this->billNow = $data[0]['dcNum'];
+            $this->billNow = $data[0]['dc'];
             return $this->billNow;
         } else {
-            echo "No product to show : " . $count;
+            return "No product to show : " . $count;
         }
     }
 
@@ -67,76 +63,77 @@ class Dc_Model extends Model {
 
     function addReport($postData) {
 
+        $dataset = $postData['data'];
         $rep = array();
 
 
         // var_dump($postData);
-        // print_r($postData);
-
-        $pList = json_encode($postData['productRequirment']);
-        $customer = (string) $postData['customerTo']['customer'];
-        $dcDate = (string) $postData['customerTo']['date'];
-        $total = (string) $postData['grandTotal'];
-        $loginUser = (string) $postData['loggedInUser']['user'];
+//        print_r($dataset);
 
 
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         try {
-            $sth = $this->db->prepare("INSERT INTO  `dcreport` (
-								`customer`,
-								`billDate`,
-								`dcItemList`,
-								`grandTotal`,
-								`totalAmount`,
-								`active`,
-								`user_account`
-								) VALUES (
-								:customer,
-								:billDate,
-								:dcItemList,
-								:grandTotal,
-								:totalAmount,
-								:active,
-								:user_account
+//`did`, `customer`, `billno`, `billDate`, `dcItemList`, `grandTotal`, 
+//`discount`, `vat`, `totalAmount`, `active`, `createdOn`, `user_account` 
+            $sth = $this->db->prepare("INSERT INTO  `dcreport` VALUES (
+                                                                NULL,
+                                                                :customer,
+                                                                :billno,
+                                                                :billDate,
+                                                                :dcItemList,
+                                                                :grandTotal,
+                                                                :discount,
+                                                                :vat,
+                                                                :totalAmount,
+                                                                :active,
+                                                                :createdOn,
+                                                                :user_account
 								)");
+            $sth->bindValue(':customer', $dataset['header']['customer']);
+            $sth->bindValue(':billno', $dataset['billno']);
+            $sth->bindValue(':billDate', $dataset['header']['date']);
+            $sth->bindValue(':dcItemList', json_encode($dataset['productRequirment']));
+            $sth->bindValue(':grandTotal', $dataset['grandTotal']);
+            $sth->bindValue(':discount', '0');
+            $sth->bindValue(':vat', '0');
+            $sth->bindValue(':totalAmount', $dataset['grandTotal']);
+            $sth->bindValue(':active', '1');
+            $sth->bindValue(':createdOn', date("Y-m-d H:i:s", time()));
+            $sth->bindValue(':user_account', $postData['userid']);
 
-            $sth->execute(array(
-                ':customer' => (string) $customer,
-                ':billDate' => (string) $dcDate,
-                ':dcItemList' => json_encode($pList),
-                ':grandTotal' => (string) $total,
-                ':totalAmount' => (string) $total,
-                ':active' => "1",
-                ':user_account' => "1"
-            ));
+            if ($sth->execute()) {
+                // get bill and execute
+                $this->dcNumber($postData);
 
-            $this->renderBill($postData);
 
-            // updating the bill number with +1
-//            UPDATE  `appBuild`.`billno` SET  `bill` =  '123' WHERE  `billno`.`bid` =1;
-//            $bill = $this->db->prepare("SELECT * FROM `billno` WHERE `user_account`= " . $user['uid']);
-            
-            $billAdd = (int) $this->billNow;
-            
-            $bill = $this->db->prepare("UPDATE  `billno` SET  `dcNum` = :dcNum WHERE  `billno`.`bid` = :user");
-            $bill->execute(array(
-                ':bill' => $billAdd+1
-            ));
+                $billAdd = (int) $this->billNow;
 
-            
-            // Respongin to the client
-            $res['status'] = "success";
-            $res['message'] = "Record Inserted Successfully";
-            $res['bill'] = $this->billNow;
-            echo json_encode($res);
+                $bill = $this->db->prepare("UPDATE  `billno` SET  `dc` = :dc WHERE  `billno`.`bid` = :user");
+                $bill->execute(array(
+                    ':dc' => $billAdd + 1,
+                    ':user' => $postData['userid']
+                ));
+
+
+                // Respongin to the client
+                $res['status'] = "success";
+                $res['message'] = "Record Inserted Successfully";
+                $res['bill'] = $this->billNow;
+
+                return $res;
+//            echo json_encode($res);
 //            echo gettype($this->billNow);
-            
+            } else {
+                $res['status'] = "failed";
+                $res['message'] = "Failed to Insert Please try again";
+                return $res;
+            }
         } catch (PDOException $e) {
             // Respongin to the client
             $res['status'] = "failed";
             $res['message'] = $e->getMessage();
-            echo json_encode($res);
+//            echo json_encode($res);
+            return $res;
         }
     }
 
