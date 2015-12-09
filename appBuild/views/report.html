@@ -2,23 +2,26 @@
 	<div class="reportHolder">
 		<table class="table table-responsive table-bordered table-striped table-hover">
 			<tr>
-				<th>Sl.No.</th>
-				<th>Customer</th>
-				<th>Bill Date</th>
-				<th>Bill Amount</th>
-				<th>Options</th>
+				<th class="text-center">Sl.No.</th>
+				<th class="text-center">Customer</th>
+				<th class="text-center">Bill Number</th>
+				<th class="text-center">Bill Date</th>
+				<th class="text-center">Bill Amount</th>
+				<th class="text-center">Options</th>
 			</tr>
 			<tr ng-repeat="(key, value) in reportRow">
-				<td>{{$index+1}}</td>
-				<td>{{value.customer.name}}</td>
-				<td>{{value.billDate}}</td>
-				<td>{{value.grandTotal}}</td>
-				<td>
-					<a href="#/reportsview/v/{{value.did}}" ng-click="paramAction(value)">view</a> |
-					<a href="#/reportsview/e/{{value.did}}" ng-click="paramAction(value)">Edit</a> |
-					<a href="#/reportsview/d/{{value.did}}" ng-click="paramAction(value)">Del</a> 
+				<td class="text-center">{{$index+1}}</td>
+				<td class="text-center">{{value.customer.name}}</td>
+				<td class="text-center">{{value.billno}}</td>
+				<td class="text-center">{{value.billDate}}</td>
+				<td class="text-right">{{value.grandTotal}}</td>
+				<td class="text-center">
+					<a class="btn btn-default" href="#/reportsview/v/{{value.did}}" ng-click="paramAction(value)">View</a>
+					<!-- <a href="#/reportsview/e/{{value.did}}" ng-click="paramAction(value)">Edit</a> | -->
+					<!-- <a href="#/reportsview/d/{{value.did}}" ng-click="paramAction(value)">Del</a>  -->
 				</td>
 			</tr>
 		</table>
+		<!-- {{reportRow | json}} -->
 	</div>
 </div>

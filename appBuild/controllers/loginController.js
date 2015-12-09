@@ -6,6 +6,7 @@
     // Check login
     $scope.getOn = window.localStorage['user']
       // console.log($scope.getOn)
+    $scope.gotToPage = "#/reports";
 
     if ($scope.getOn != undefined) {
       if ($scope.getOn.length == 0) {
@@ -18,7 +19,7 @@
           window.localStorage.removeItem('login')
         }
         console.log($scope.getOn)
-        window.location.hash = '#/dashboard'
+        window.location.hash = $scope.gotToPage;
       }
     } else {
       console.log('scope is ', $scope.getOn)
@@ -56,7 +57,7 @@
           setTimeout(function(){
             // Getting Data          
             $scope.requestData();
-            window.location.hash = '#/dashboard'
+            window.location.hash = $scope.gotToPage
           }, 2000);
 
 

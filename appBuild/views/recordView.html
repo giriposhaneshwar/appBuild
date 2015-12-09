@@ -1,63 +1,107 @@
 <a href="#/reports" class="btn btn-primary">Go Back</a>
 <div class="mainContainer">
-	<!-- {{nrData |  json}} -->
-	<br>
-	<div class="dcBillFormat" id="dcBillFormat">
-		<div class="companyHeading section1 text-center">
-			<h1 style="text-transform: uppercase;">Indotech Technologies</h1>
-			<p>5-1-526, 2nd Floor, Ganji Complex, Hill Street Ranigunj, Secunderabad - 500003, 9299701935, indotech06@gmail.com</p>
-			<p>COMPUTER SALES / SERVICE / AMC's / NETWORKING - CCTV SOLUTIONS - WEB SOLUTIONS</p>
-		</div>
-		<div class="dcTitle section2 text-center" style="padding: 20px 0px;"><h2>Delivery Challan</h2></div>
-		<div class="section3">
-			<table class="table">
-				<tr>
-					<td class="customerInfo">
-						<b>M/s {{nrData.customer.name}}</b>
-						<p>{{nrData.customer.address}}</p>
-					</td>
-					<td class="billDetails">
-						<table>
-							<tr>
-								<td>Date</td>
-								<td>{{nrData.billDate}}</td>
-							</tr>
-							<tr>
-								<td>Bill No </td>
-								<td>{{nrData.billno}}</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="section4">
-			<div class="description" style="padding: 20px;">This is the bill description</div>
-		</div>
-		<div class="section5">
-			<table class="table">
-				<tr>
-					<th>Sno</th>
-					<th>Product Name</th>
-					<th>Qty</th>
-					<th>Rate</th>
-					<th>Amount</th>
-				</tr>
-				<tr ng-repeat="(k, v) in nrData.dcItemList">
-					<td>{{k+1}}</td>
-					<td>{{v.name}}</td>
-					<td>{{v.rate}}</td>
-					<td>{{v.qty}}</td>
-					<td><b>{{v.amt}}</b></td>
-				</tr>
-				<tr>
-					<td colspan="4">Amount</td>
-					<td><b>{{nrData.totalAmount}}</b></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<div class="print">
-		<a class="btn btn-primary" ng-click="printIt()">Print</a>
-	</div>
+    <br>
+    <div class="dcBillFormat clearfix" id="dcBillFormat">
+        <div class="companyHeading section1 text-center" style="border-bottom: 2px solid #000;">
+            <h2 style="text-transform: uppercase; font-weight: bold;">{{nrData.userInfo.company | uppercase}}</h2>
+            <p>{{nrData.userInfo.address}}, {{nrData.userInfo.phone}}, {{nrData.userInfo.email}}</p>
+            <p class="bg" style="font-weight: bold;">{{nrData.userInfo.caption}}</p>
+        </div>
+            <br><br>
+        <div class="dcTitle section2 text-center">
+            <span><u>PROFORMA INVOICE / DELIVERY CHALLAN / ESTIMATION</u></span>
+            <br>
+        </div>
+        <div class="section3 customerDetails clearfix">
+            <table class="table borderless">
+                <tr>
+                    <td width="50%">
+                        <div class="customerInfo">
+                            <b>M/s {{nrData.customer.name}}</b>
+                            <p>
+                                {{nrData.customer.address}}
+                                <br> P: {{nrData.customer.phone}}, F: {{nrData.customer.fax}}
+                                <br> M: {{nrData.customer.mobile}}
+                                <br> E: {{nrData.customer.email}}
+                            </p>
+                            <p><b>Tin : </b> {{nrData.customer.tin}}</p>
+                        </div>
+                    </td>
+                    <td width="50%">
+                        <table class="table borderless billDetails" align="right">
+                            <tr>
+                                <td width="80"><b>Date</b> </td>
+                                <td>: {{nrData.billDate}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Bill No</b> </td>
+                                <td>: {{nrData.billno}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="section4 clearfix">
+            <div class="description" style="padding: 0px 20px 20px;">We thank you for your Enquiry and have pleasure in quoting as follows and hope to be favoured with your valued order.</div>
+        </div>
+        <div class="section5 billTableNum">
+            <table class="table table-bordered">
+                <tr>
+                    <th width="5%">Sl.No.</th>
+                    <th class="text-center">ITEM-DESCRIPTION</th>
+                    <th width="10%" class="text-center">Qty</th>
+                    <th width="10%" class="text-right">Rate</th>
+                    <th width="20%" class="text-right" align="right">Amount (Rs.)</th>
+                </tr>
+                <tr ng-repeat="(k, v) in nrData.dcItemList">
+                    <td class="text-center">{{k+1}}</td>
+                    <td>{{v.name}}</td>
+                    <td class="text-center">{{v.qty}}</td>
+                    <td align="right">{{v.rate | number:0}}.00</td>
+                    <td align="right"><b>{{v.amt | number:0}}.00</b></td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="right"><b>TOTAL AMOUNT (Rs.)</b></td>
+                    <td align="right" class="text-right"><b>{{nrData.totalAmount | number:0}}.00</b></td>
+                </tr>
+            </table>
+        </div>
+        <div class="section5 grandTotal clearfix">
+            <div class="inWords">
+                <b>Rupees : {{nrData.numWord}} Only</b>
+            </div>
+            <!-- <table class="table" align="right">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Discount(%) : </td>
+                    <td><b>{{nrData.discount}}</b></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Vat(%) : </td>
+                    <td><b>{{nrData.vat}}</b></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Grand Total(Rs) : </td>
+                    <td><b>{{nrData.grandTotal}}</b></td>
+                </tr>
+            </table> -->
+        </div>
+        <div class="section5 signArea clearfix">
+            <div class="signAreaLeft">
+            	<span class="reveiverSign">Receiver's Signatue with seal</span>
+            </div>
+            <div class="signAreaRight">
+            	<span class="companyName">For {{nrData.userInfo.company | uppercase}}</span>
+            	<span class="authorised">Authorised Signatory</span>
+            </div>
+        </div>
+    </div>
+    <div class="print">
+        <a class="btn btn-primary" ng-click="printDiv('dcBillFormat');">Print</a>
+        <!-- <a class="btn btn-primary" ng-click="window.print()">Print</a> -->
+    </div>
 </div>
+<!-- {{nrData | json}} -->

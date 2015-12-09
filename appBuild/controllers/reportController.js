@@ -12,6 +12,9 @@
     $scope.curNav = $location.path().substring(1)
       // console.log('page', $scope.curNav)
 
+      // Get Data
+      $scope.requestData();
+
     $scope.allReports = []
 
     console.log("Route Params", $routeParams);
@@ -28,7 +31,7 @@
         if (res.status == 'success') {
           // console.log("Response form the server is ", res)
           $scope.allReports = res
-            // console.log('Report stype ', $scope.allReports)
+            console.log('Report stype ', $scope.allReports)
 
           // console.log($scope.allReports.data)
           $scope.reportRow = []
@@ -47,12 +50,43 @@
 
     }
 
-    $scope.printIt = function() {
-      var table = document.getElementByName('html').innerHTML;
-      var myWindow = $window.open('', '', 'width=800, height=600');
-      myWindow.document.write(table);
-      myWindow.print();
-    };
+    $scope.printDiv = function(divName) {
+
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+      var popupWin;
+
+      if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+        popupWin = window.open('', '_blank', 'width=800,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+        popupWin.window.focus();
+        popupWin.document.write('<!DOCTYPE html><html><head><title>Document Print</title>' +
+          '<link rel="stylesheet" type="text/css" href = "./public/css/bootstrap.min.css"> ' +
+          '<link rel="stylesheet" type="text/css" href = "./public/css/bootstrap-datetimepicker.min.css" > ' +
+          '<link rel="stylesheet" type="text/css" href = "./public/css/defaultStyles.css" > ' +
+          '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div></html>');
+        popupWin.onbeforeunload = function(event) {
+          // popupWin.close();
+          // return '.\n';
+          return popupWin.close();
+        };
+        popupWin.onabort = function(event) {
+          popupWin.document.close();
+          popupWin.close();
+        }
+      } else {
+        popupWin = window.open('', '_blank', 'width=800,height=600');
+        popupWin.document.open();
+        popupWin.document.write('<!DOCTYPE html><html><head><title>Document Print</title>' +
+          '<link rel="stylesheet" type="text/css" href = "./public/css/bootstrap.min.css"> ' +
+          '<link rel="stylesheet" type="text/css" href = "./public/css/bootstrap-datetimepicker.min.css" > ' +
+          '<link rel="stylesheet" type="text/css" href = "./public/css/defaultStyles.css" > ' +
+          '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div></html>');
+        popupWin.document.close();
+      }
+      popupWin.document.close();
+
+      return true;
+    }
 
     // Getting the params
     // Mapping the data to show in params page
@@ -63,6 +97,8 @@
 
     $scope.paramAction = function(data) {
       $rootScope.nrData = data
+      $rootScope.nrData.userInfo = $scope.allReports.userInfo;
+      // console.log("Trg Data", data);
     }
     console.log('nrData', $rootScope.nrData)
 
