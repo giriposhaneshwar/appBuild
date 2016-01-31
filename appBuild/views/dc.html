@@ -32,6 +32,9 @@
                             <td>
                                 <label>Qty</label>
                             </td>
+                            <td>
+                                <label>Discount(%)</label>
+                            </td>
                             <td></td>
                         </tr>
                         <tr>
@@ -48,14 +51,15 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="text" ng-model="product.rate" name="rate" id="rate" class="Phone form-control" placeholder="Rate">
+                                <input type="text" ng-model="product.rate" name="rate" id="rate" class="Phone form-control" placeholder="Rate" style="width: 80px">
                             </td>
                             <td>
-                                <input type="text" ng-model="product.qty" name="qty" id="qty" class="email form-control" placeholder="Quantity" ng-keydown="$event.which === 13 && addProductRow($event, product)">
+                                <input type="text" ng-model="product.qty" name="qty" id="qty" class="email form-control" placeholder="Quantity" ng-keydown="$event.which === 13 && addProductRow($event, product)"  style="width: 80px">
                             </td>
                             <td valign="middle">
-                                <!-- <input type="text" ng-model="product.setVatRow" name="vat" id="vat" class="email form-control" placeholder="vat (Optional)"> -->
-                                <a class="btn btn-danger" ng-click="addProductRow($event, product)">Add Row</a></td>
+                                <input type="text" ng-model="product.setVatRow" name="vat" id="vat" class="email form-control" placeholder="Discount"  style="width: 80px">
+                                <a class="btn btn-danger" ng-click="addProductRow($event, product)">Add Row</a>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -67,7 +71,7 @@
                             <th>Description</th>
                             <th>Qty</th>
                             <th>Rate</th>
-                            <!-- <th>Vat</th> -->
+                            <th>Discount</th>
                             <th>Amount</th>
                             <th class="text-center">Options</th>
                         </tr>
@@ -76,10 +80,10 @@
                             <td>{{val.name}}</td>
                             <td>{{val.qty}}</td>
                             <td>{{val.rate}}</td>
-                            <!-- <td>{{val.setVatRow}}</td> -->
+                            <td>{{val.setVatRow}}</td>
                             <td>{{val.amt}}</td>
                             <td class="text-right">
-                                <a href="#" ng-click="editRow($event, key, val)" class="btn btn-danger">E</a>
+                                <!-- <a href="#" ng-click="editRow($event, key, val)" class="btn btn-danger">E</a> -->
                                 <a href="#" ng-click="delRow($event, key, val)" class="btn btn-danger">D</a>
                             </td>
                         </tr>

@@ -136,7 +136,7 @@
             $scope.getSizeObject = Object.keys(pData).length
 
             if ($scope.getSizeObject == 4) {
-                pData.amt = vatAmt + (Number(pData.rate) * Number(pData.qty))
+                pData.amt = (Number(pData.rate) * Number(pData.qty)) - vatAmt;
 
                 // console.log('$scope.productList', $scope.productList)
                 console.log('row After', pData)

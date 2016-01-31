@@ -1,27 +1,51 @@
 <div class="reportContainer" ng-init="getReports()">
-	<div class="reportHolder">
-		<table class="table table-responsive table-bordered table-striped table-hover">
-			<tr>
-				<th class="text-center">Sl.No.</th>
-				<th class="text-center">Customer</th>
-				<th class="text-center">Bill Number</th>
-				<th class="text-center">Bill Date</th>
-				<th class="text-center">Bill Amount</th>
-				<th class="text-center">Options</th>
-			</tr>
-			<tr ng-repeat="(key, value) in reportRow">
-				<td class="text-center">{{$index+1}}</td>
-				<td class="text-center">{{value.customer.name}}</td>
-				<td class="text-center">{{value.billno}}</td>
-				<td class="text-center">{{value.billDate}}</td>
-				<td class="text-right">{{value.grandTotal}}</td>
-				<td class="text-center">
-					<a class="btn btn-default" href="#/reportsview/v/{{value.did}}" ng-click="paramAction(value)">View</a>
-					<!-- <a href="#/reportsview/e/{{value.did}}" ng-click="paramAction(value)">Edit</a> | -->
-					<!-- <a href="#/reportsview/d/{{value.did}}" ng-click="paramAction(value)">Del</a>  -->
-				</td>
-			</tr>
-		</table>
-		<!-- {{reportRow | json}} -->
-	</div>
+    <!-- <div class="printReport"><a href="">Print Reports</a></div> -->
+    <div class="printReports text-right">
+        <a class="btn btn-primary" ng-click="printDiv('reportHolder');">Print Reports</a>
+        <!-- <a class="btn btn-primary" ng-click="window.print()">Print</a> -->
+    </div>
+    <div class="reportHolder" id="reportHolder">
+        <table class="table table-responsive table-bordered table-striped table-hover">
+            <tr>
+                <!-- <th class="text-center">Sl.No.</th> -->
+                <th class="text-center">DC No.</th>
+                <th class="text-center">Customer</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Options</th>
+            </tr>
+            <tr ng-repeat="(key, value) in reportRow">
+                <!-- <td class="text-center">{{$index+1}}</td> -->
+                <td class="text-center">{{value.billno}}</td>
+                <td class="text-left">{{value.customer.company}}</td>
+                <td class="text-center">{{value.billDate}}</td>
+                <td class="text-right">{{value.grandTotal}}</td>
+                <td class="text-center">
+                    <a class="btn btn-default" href="#/reportsview/v/{{value.did}}" ng-click="paramAction($event, value, 'v')">View</a>
+                    <!-- <a href="#/reportsview/e/{{value.did}}" ng-click="paramAction(value, 'e')">Edit</a> | -->
+                    <a href="#/reportsview/d/{{value.did}}" ng-click="paramAction($event, value, 'd')" class="launchConfirm" data-toggle="modal" data-target="#myModal">Del</a>
+                </td>
+            </tr>
+        </table>
+        <!-- {{reportRow | json}} -->
+    </div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger confirmDel" data-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-default cancelDel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>

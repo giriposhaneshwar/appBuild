@@ -21,7 +21,7 @@
                     data.data.loggedInUser = loggedInUser
                 }
 
-                // console.log('getting the data type of ', JSON.stringify(data))
+                console.log('Sending Data From Application :::: ', data.url, data)
 
                 rtn = $http({
                     url: urlPre,
@@ -29,6 +29,7 @@
                     data: JSON.stringify(data)
                 }).success(function(data, status, headers, config) {
                     // console.log('\n\n\n\tservice response::::::: \n\t', data, status, headers, config, "\n\n\n\t")
+                    console.log("Return Data From Server ::::", data);
                     if (cb) {
                         return cb(data)
                     } else {

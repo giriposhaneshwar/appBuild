@@ -6,16 +6,16 @@
 		</ul>
 	</div>
 	<hr>
+
 	<div class="cmContentHolder">
 		<div class="addCustomerRow" ng-if="tabActive== 'addCustomer'">
-			<h3>Add Customer</h3>
 			<div ng-include="'./html/cmEntryForm.html'"></div>
 		</div>
 		<!-- Customer List Section -->
 		<div class="addCustomerRow" ng-if="tabActive== 'customerList'">
 			<table class="table table-striped table-bordered table-hover table-condensed">
 				<tr>
-					<td>SNo</td>
+					<td>Sl.No.</td>
 					<td>Company</td>
 					<td>Name</td>
 					<td>Address</td>
@@ -33,9 +33,9 @@
 					<td>{{item.phone}}</td>
 					<td>{{item.email}}</td>
 					<td>{{item.tin}}</td>
-					<td>{{item.desc}}</td>
+					<td>{{item.description}}</td>
 					<td>
-						<a  href="#/customers/{{item.cid}}" ng-click="paramAction(item)" class="btn btn-danger">E</a>
+						<a  href="#/customers/{{item.cid}}" ng-click="paramAction(item, 'edit')" class="btn btn-danger">E</a>
 						<a  ng-click="delCustomer($event, item)" class="btn btn-danger">D</a>
 					</td>
 				</tr>

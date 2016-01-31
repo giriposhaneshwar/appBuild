@@ -31,7 +31,17 @@ class Customers_Model extends Model {
     }
 
     function insertCustomer($postData) {
-//         print_r($postData);
+        $sendData['name'] = $postData['data']['name'] ? $postData['data']['name'] : "";
+        $sendData['company'] = $postData['data']['company'] ? $postData['data']['company'] : "";
+        $sendData['address'] = $postData['data']['address'] ? $postData['data']['address'] : "";
+        $sendData['tin'] = $postData['data']['tin'] ? $postData['data']['tin'] : "";
+        $sendData['mobile'] = $postData['data']['mobile'] ? $postData['data']['mobile'] : "";
+        $sendData['phone'] = $postData['data']['phone'] ? $postData['data']['phone'] : "";
+        $sendData['fax'] = $postData['data']['fax'] ? $postData['data']['fax'] : "";
+        $sendData['email'] = $postData['data']['email'] ? $postData['data']['email'] : "";
+        $sendData['type'] = $postData['data']['type'] ? $postData['data']['type'] : "";
+        $sendData['desc'] = $postData['data']['desc'] ? $postData['data']['description'] : "";
+//         print_r($sendData);
         // echo "\n\n\t";
         // Inserting the data into database
         $resultData = array();
@@ -43,16 +53,16 @@ class Customers_Model extends Model {
                                 `cid`, `name`, `company`, `address`, `tin`, `mobile`, `phone`, `fax`, `email`, `type`, `description`, `active`, `addedOn`, `user_account`)
                          VALUES (NULL, :name, :company,  :address,  :tin,  :mobile,  :phone,  :fax,  :email,  :type,  :desc,  :active,  :addedOn, :user)");
 //            $sth->bindValue(":cid", $postData['data']['cid']);
-            $sth->bindValue(":name", $postData['data']['name']);
-            $sth->bindValue(":company", $postData['data']['company']);
-            $sth->bindValue(":address", $postData['data']['address']);
-            $sth->bindValue(":tin", $postData['data']['tin']);
-            $sth->bindValue(":mobile", $postData['data']['mobile']);
-            $sth->bindValue(":phone", $postData['data']['phone']);
-            $sth->bindValue(":fax", $postData['data']['fax']);
-            $sth->bindValue(":email", $postData['data']['email']);
-            $sth->bindValue(":type", $postData['data']['type']);
-            $sth->bindValue(":desc", $postData['data']['desc']);
+            $sth->bindValue(":name", $sendData['name']);
+            $sth->bindValue(":company", $sendData['company']);
+            $sth->bindValue(":address", $sendData['address']);
+            $sth->bindValue(":tin", $sendData['tin']);
+            $sth->bindValue(":mobile", $sendData['mobile']);
+            $sth->bindValue(":phone", $sendData['phone']);
+            $sth->bindValue(":fax", $sendData['fax']);
+            $sth->bindValue(":email", $sendData['email']);
+            $sth->bindValue(":type", $sendData['type']);
+            $sth->bindValue(":desc", $sendData['desc']);
             $sth->bindValue(":active", '1');
             $sth->bindValue(":addedOn", date("Y-m-d H:i:s", time()));
             $sth->bindValue(":user", $postData['userid']);

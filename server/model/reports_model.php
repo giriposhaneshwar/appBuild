@@ -45,6 +45,28 @@ class Reports_Model extends Model {
 			echo "No Data to show : " . $count;
 		}
 	}
+	// Deleting a row
+	function deleteRecord($postData) {
+		// echo "Getting the stats of products";
+
+		$sth = $this->db->prepare("DELETE FROM `dcreport` WHERE `did` = :id");
+		$res = $sth->execute(array(':id' => (int) $postData['data']));
+
+		if ($res) {
+			$buildObj['status'] = "success";
+			$buildObj['message'] = "Record Deleted Successfully";
+			// $getData = $this->getAllReports($postData);
+			// $buildObj['data'] = $getData;
+		} else {
+			$buildObj['status'] = "failed";
+			$buildObj['message'] = "Failed to delete data! Please try again later.";
+			// $getData = $this->getAllReports($postData);
+			// $buildObj['data'] = $getData;
+		}
+
+		return $buildObj;
+
+	}
 
 	function unescape($string) {
 

@@ -24,6 +24,10 @@ html {
 .err {
     color: #c00;
 }
+.fieldError{
+    padding-bottom: 10px;
+    font-size: 1.2em;
+}
 
 .success {
     color: green;
@@ -122,7 +126,9 @@ ul.navItems li a.active {
 }
 
 .btn-danger {
-    background-color: #c00;
+    background-color: #000;
+    color: #fff;
+    border: none;
 }
 
 .btn-danger.active,
@@ -131,7 +137,8 @@ ul.navItems li a.active {
 .btn-danger:focus,
 .btn-danger:hover,
 .open>.dropdown-toggle.btn-danger {
-    background-color: #6E0202;
+    background-color: #303030;
+    color: #fff;
 }
 
 
@@ -396,9 +403,9 @@ ul.navItems li a.active {
 
 .dcBillFormat {
     page-break-after: always;
-    margin: 0;
+    margin: 0px auto;
     padding: .8cm;
-    border: none;
+    border: 1px solid #ccc;
     overflow: hidden;
 }
 
@@ -429,7 +436,7 @@ p {
 .signArea {
     display: table;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .signAreaLeft,
@@ -462,6 +469,9 @@ p {
 .billTableNum {
     min-height: 350px;
 }
+.billTableNum.dLikeUser {
+    min-height: 50px;
+}
 
 .customerDetails .table {
     margin: 0px;
@@ -474,6 +484,7 @@ p {
 .billTableNum table.table>thead>tr>td,
 .billTableNum table.table>thead>tr>th {
     padding: 3px 8px;
+    font-size: 12px;
 }
 
 .table>tbody>tr>td,
@@ -501,7 +512,24 @@ p {
     display: block;
     font-size: 16px;
     font-weight: bold;
-    padding-bottom: 15px;
+    padding-bottom: 5px;
+}
+.dcTitle.dLikeUser span{
+    padding-bottom: 5px;
+}
+
+.mainContainer .print{
+    display: block;
+    margin: 0px auto;
+    /*border: 1px solid #000;*/
+    width: 800px;
+}
+.printReports{
+    display: block;
+    /*border: 1px solid #000;*/
+}
+.printReports a{
+    border-radius: 5px 5px 0px 0px;
 }
 
 @media print {
@@ -612,5 +640,19 @@ p {
     }
     .billTableNum {
         min-height: 350px;
+    }
+}
+
+
+body,
+.modal-open .page-container,
+.modal-open .page-container .navbar-fixed-top,
+.modal-open .modal-container {
+    overflow-y: scroll;
+}
+
+@media (max-width: 979px) {
+    .modal-open .page-container .navbar-fixed-top{
+        overflow-y: visible;
     }
 }
