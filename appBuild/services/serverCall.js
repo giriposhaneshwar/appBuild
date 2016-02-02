@@ -36,7 +36,9 @@
                         return data
                     }
                     // return data
-                }).error(function(data, status, headers, config) {})
+                }).error(function(data, status, headers, config) {
+                    $('.err').text(data);
+                });
 
                 // return rtn
             }
